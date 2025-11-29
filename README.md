@@ -41,3 +41,11 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+A note for me lmao:
+From this point on:
+
+    npm run dev to work locally,
+    Edit files,
+
+    git commit && git push → GitHub Actions builds and deploys automatically.
