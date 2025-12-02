@@ -1,0 +1,32 @@
+---
+import "../styles/global.css"
+
+const {
+  title = "Presentation Ace – Executive Presentation Designer",
+  description = "Executive PowerPoint presentation design for founders, VPs, and senior leaders.",
+} = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+
+  <body>
+    <main>
+      <slot />
+    </main>
+
+    <footer class="coming-footer">
+      <div class="shell">
+        <p>
+          © {new Date().getFullYear()} Presentation Ace. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

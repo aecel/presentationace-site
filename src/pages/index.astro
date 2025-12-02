@@ -1,31 +1,68 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import "../styles/coming-soon.css"
 
+// Change these URLs to your actual links:
+const temporaryGithubUrl = "https://aecel.github.io/presentation-design/"
+const clientPortalUrl = "https://portal.presentationace.com"
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>
-      Presentation Ace | Executive PowerPoint Designer and Specialist
-    </title>
-    <meta
-      name="description"
-      content="Executive PowerPoint presentation design for founders, VPs, and senior leaders."
-    />
-  </head>
-  <body>
-    <h1>Coming Soon!</h1>
-    <h2>
-      <a href="https://aecel.github.io/presentation-design"
-        >Check out the temporary site here</a
-      >
-    </h2>
-    <h2>
-      <a href="https://portal.presentationace.com"
-        >Click here to go to client portal</a>
-    </h2>
-  </body>
-</html>
+<BaseLayout
+  title="Presentation Ace – New Site Coming Soon"
+  description="Presentation Ace is rebuilding its studio site. In the meantime, you can visit the temporary portfolio or access the client portal."
+>
+  <div class="coming-root">
+    <div class="shell">
+      <section class="coming-card">
+        <div class="coming-card-inner">
+          <div class="coming-tag">
+            <span class="coming-tag-dot"></span>
+            <span>New site in progress</span>
+          </div>
+
+          <h1 class="coming-title">
+            The new Presentation Ace site is on its way.
+          </h1>
+
+          <p class="coming-subtitle">
+            I’m rebuilding my studio website to better serve founders, VPs, and
+            teams who live in PowerPoint. While that’s in the works, you can
+            still see my work and get in touch.
+          </p>
+
+          <p class="coming-note">
+            Use the links below to visit my temporary portfolio or go straight
+            to the client portal.
+          </p>
+
+          <div class="coming-links">
+            <a
+              class="coming-link-primary"
+              href={temporaryGithubUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open temporary site
+            </a>
+
+            <a
+              class="coming-link-secondary"
+              href={clientPortalUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Go to client portal
+            </a>
+          </div>
+
+          <p class="coming-small">
+            If you need help with a deck right now, you can always reach me at
+            <br />
+            <a href="mailto:ace@presentationace.com">ace@presentationace.com</a
+            >.
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
