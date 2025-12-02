@@ -13,7 +13,7 @@
 
   --font-headline: "Segoe UI", "Lato", system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: "Lato", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --font-body: "Segoe UI", "Lato", system-ui, -apple-system, BlinkMacSystemFont,
     Roboto, sans-serif;
 }
 
