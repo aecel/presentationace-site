@@ -1,0 +1,562 @@
+---
+/**
+ * ClientPreferencesForm (static, Formspree-friendly)
+ * Usage: <ClientPreferencesForm />
+ *
+ * Put option images in:
+ *   public/preferences/option-a.webp
+ *   public/preferences/option-b.webp
+ *   public/preferences/option-c.webp
+ *   public/preferences/option-d.webp
+ *
+ * Replace FORM_ACTION with your Formspree endpoint.
+ */
+
+const SECTION_ID = "preferences"
+const FORM_ACTION = "https://formspree.io/f/YOUR_ID" // <-- replace
+const EMAIL = "ace@presentationace.com"
+
+const options = [
+  { id: "X", label: "Original", src: "/preferences/option-x.webp" },
+  { id: "A", label: "Option A", src: "/preferences/option-a.webp" },
+  { id: "B", label: "Option B", src: "/preferences/option-b.webp" },
+  { id: "C", label: "Option C", src: "/preferences/option-c.webp" },
+  { id: "D", label: "Option D", src: "/preferences/option-d.webp" },
+  { id: "E", label: "Option E", src: "/preferences/option-e.webp" },
+  // Add E if you want
+]
+---
+
+<section id={SECTION_ID} class="prefs" aria-labelledby="prefs-title">
+  <div class="shell">
+    <header class="prefs__header">
+      <p class="prefs__eyebrow">Preference calibration</p>
+      <h2 id="prefs-title" class="prefs__title">Help me learn your style</h2>
+      <p class="prefs__intro">
+        Presentation work can be subjective. This short form helps reduce
+        guesswork so I can match your preferences faster. Nothing here locks us
+        in. It just gives me direction.
+      </p>
+    </header>
+
+    <form class="prefsCard" method="POST" action={FORM_ACTION}>
+      <input
+        type="hidden"
+        name="_subject"
+        value="New client preferences submission (Presentation Ace)"
+      />
+      <input type="hidden" name="page" value="/preferences" />
+      <input
+        class="hp"
+        type="text"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+      />
+
+      <div class="grid2">
+        <div class="field">
+          <label for="name">Name (optional)</label>
+          <input id="name" name="name" type="text" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="email">Email (recommended)</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder={EMAIL}
+          />
+        </div>
+      </div>
+
+      <!-- 1) STYLE CALIBRATION -->
+      <fieldset class="fieldset">
+        <legend>1) Slide style calibration</legend>
+        <p class="hint">
+          Below are a few redesign directions for the same “plain text” slide.
+          Pick the best fit, then optionally a second choice and least favorite.
+        </p>
+
+        <div class="options">
+          {
+            options.map((o) => (
+              <label class="option" for={`best-${o.id}`}>
+                <div class="option__top">
+                  <span class="option__tag">{o.label}</span>
+                </div>
+                <img
+                  class="option__img"
+                  src={o.src}
+                  alt={`Style option ${o.id}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </label>
+            ))
+          }
+        </div>
+
+        <div class="rankGrid">
+          <div class="field">
+            <label>Best fit (required)</label>
+            <div class="radioRow">
+              {
+                options.map((o) => (
+                  <label class="radioPill">
+                    <input
+                      id={`best-${o.id}`}
+                      type="radio"
+                      name="best_fit"
+                      value={o.id}
+                      required
+                    />
+                    <span>{o.id}</span>
+                  </label>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Second choice (optional)</label>
+            <div class="radioRow">
+              {
+                options.map((o) => (
+                  <label class="radioPill">
+                    <input type="radio" name="second_choice" value={o.id} />
+                    <span>{o.id}</span>
+                  </label>
+                ))
+              }
+              <label class="radioPill">
+                <input type="radio" name="second_choice" value="none" />
+                <span>None</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Least preferred (optional)</label>
+            <div class="radioRow">
+              {
+                options.map((o) => (
+                  <label class="radioPill">
+                    <input type="radio" name="least_preferred" value={o.id} />
+                    <span>{o.id}</span>
+                  </label>
+                ))
+              }
+              <label class="radioPill">
+                <input type="radio" name="least_preferred" value="none" />
+                <span>None</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="why">What do you like about your best fit?</label>
+          <textarea
+            id="why"
+            name="why_best_fit"
+            rows="4"
+            placeholder="Examples: clean and minimal, feels premium, more visual, easier to scan, modern typography, more whitespace, etc."
+          ></textarea>
+        </div>
+
+        <div class="field">
+          <label for="avoid">Anything to avoid?</label>
+          <textarea
+            id="avoid"
+            name="avoid"
+            rows="3"
+            placeholder="Examples: too corporate, too playful, too dense, too much icon clutter, too much animation, no AI imagery, etc."
+          ></textarea>
+        </div>
+      </fieldset>
+
+      <!-- 2) VISUAL PREFERENCES -->
+      <fieldset class="fieldset">
+        <legend>2) Visual preferences</legend>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="density">Slide density</label>
+            <select id="density" name="density">
+              <option value="minimal"
+                >Minimal (few words, strong whitespace)</option
+              >
+              <option value="balanced" selected>Balanced</option>
+              <option value="detailed">Detailed (more info per slide)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="theme">Overall look</label>
+            <select id="theme" name="theme">
+              <option value="light" selected>Mostly light</option>
+              <option value="dark">Mostly dark</option>
+              <option value="either">Either is fine</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="imagery">Visual style</label>
+            <select id="imagery" name="imagery">
+              <option value="photos">Prefer photos</option>
+              <option value="illustrations">Prefer illustrations</option>
+              <option value="mix" selected>Mix is fine</option>
+              <option value="minimal">Minimal (icons/shapes only)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tone">Tone</label>
+            <select id="tone" name="tone">
+              <option value="very-executive" selected
+                >Executive and restrained</option
+              >
+              <option value="modern">Modern</option>
+              <option value="bold">Bold and high-contrast</option>
+              <option value="friendly">Friendly</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="refs">Reference decks or examples (links)</label>
+          <input
+            id="refs"
+            name="references"
+            type="text"
+            placeholder="Paste links to slides/decks you like (or dislike)..."
+          />
+        </div>
+      </fieldset>
+
+      <!-- 3) ANIMATION -->
+      <fieldset class="fieldset">
+        <legend>3) Animation preference</legend>
+
+        <div class="field">
+          <label for="animation">Animation style</label>
+          <select id="animation" name="animation">
+            <option value="none">No animation</option>
+            <option value="subtle" selected
+              >Subtle, executive-style (default)</option
+            >
+            <option value="presenter-paced"
+              >Presenter-paced builds (step-by-step)</option
+            >
+            <option value="not-sure">Not sure, recommend what fits</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="check">
+            <input type="checkbox" name="motion_sensitive" value="yes" />
+            <span>Prefer minimal motion (motion-sensitive audience)</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 4) WORKING STYLE -->
+      <fieldset class="fieldset">
+        <legend>4) Working style</legend>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="comms">Preferred communication</label>
+            <select id="comms" name="communication">
+              <option value="async" selected>Async (email/chat/notes)</option>
+              <option value="quick-calls">Quick calls when needed</option>
+              <option value="scheduled">Scheduled weekly check-in</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="feedback">Feedback style</label>
+            <select id="feedback" name="feedback_style">
+              <option value="consolidated" selected
+                >One consolidated set of notes</option
+              >
+              <option value="incremental">Small notes as we go</option>
+              <option value="either">Either is fine</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="decision">Who gives final approval?</label>
+          <input
+            id="decision"
+            name="final_approver"
+            type="text"
+            placeholder="Optional"
+          />
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button class="btn" type="submit">Send preferences</button>
+        <p class="note">
+          Prefer to skip this? No problem. A quick call or a reference deck
+          works too.
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    .prefs {
+      --ink: #2a2c27;
+      --accent: #cf729c;
+
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: clamp(28px, 5vw, 56px) 16px;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .prefs .shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .prefs__header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .prefs__eyebrow {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+    .prefs__title {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .prefs__intro {
+      margin: 12px auto 0;
+      max-width: 860px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .prefsCard {
+      margin-top: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .fieldset {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    legend {
+      padding: 0 8px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .field:first-child {
+      margin-top: 0;
+    }
+
+    label {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 12px;
+      padding: 12px;
+      font: inherit;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: rgba(207, 114, 156, 0.55);
+      box-shadow: 0 0 0 4px rgba(207, 114, 156, 0.12);
+    }
+
+    .hint {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.92rem;
+    }
+
+    .options {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .option {
+      width: clamp(160px, 22%, 220px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .option__top {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .option__tag {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 0.9rem;
+    }
+
+    .option__img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #f7f7f7;
+    }
+
+    .rankGrid {
+      margin-top: 12px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .radioRow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .radioPill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.85);
+      font-weight: 700;
+    }
+
+    .radioPill input {
+      accent-color: var(--accent);
+      width: auto;
+    }
+
+    .check {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .check input {
+      margin-top: 3px;
+      accent-color: var(--accent);
+      width: auto;
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .btn {
+      height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: var(--accent);
+      color: #fff;
+      font-weight: bold;
+      /* font-size: 1rem; */
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      filter: brightness(0.98);
+    }
+
+    .note {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    .hp {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+      .option {
+        width: 100%;
+      }
+    }
+  </style>
+</section>

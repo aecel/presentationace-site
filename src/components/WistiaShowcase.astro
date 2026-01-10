@@ -1,0 +1,183 @@
+---
+/**
+ * Standalone Wistia showcase section.
+ * - Shows 3 thumbnail cards
+ * - Click -> opens modal -> loads ONE Wistia iframe on demand
+ * - Includes fallback link for adblock users
+ *
+ * Put thumbnails in /public/wistia/
+ */
+import "../styles/wistia-showcase_dark.css"
+
+type WistiaItem = {
+  title: string
+  description: string
+  wistiaId: string // e.g. "abc123xyz"
+  thumbnail: string // local image path under /public
+}
+
+const SECTION_ID = "work-samples"
+
+const items: WistiaItem[] = [
+  {
+    title:
+      "Presentation Design for CEO Buy‑In: Turning a Complex Algorithm into a Clear Story",
+    description: `My client needed to clearly explain a complex algorithm to their
+          CEO. Working from a detailed text file, I designed a concise
+          visual that made the process easy to grasp, effectively
+          highlighting how the algorithm saves the company valuable time.
+          The CEO quickly understood the impact, helping the team secure
+          buy-in for their solution.`,
+    wistiaId: "kbt3hk7eyp",
+    thumbnail: "/wistia/sample-1.jpg",
+  },
+  {
+    title:
+      "In‑House Web Application Presentation Design: Explaining the Tech Stack and Business Impact",
+    description: `For this internal project, I designed a presentation to introduce a new in‑house custom web application. The deck walked stakeholders through the problem the app solves, the chosen tech stack and architecture, and the measurable impact on workflow efficiency. I transformed technical details into clear visuals and narratives so both technical and non‑technical audiences could understand how the application works and why it matters to the business.`,
+    wistiaId: "w8lqjd4iwq",
+    thumbnail: "/wistia/sample-2.jpg",
+  },
+  {
+    title:
+      "PowerPoint Presentation Redesign: From Text Outline to Engaging End‑of‑Year Deck",
+    description: `For this end-of-year business unit presentation, my client
+          provided a text-only PowerPoint outline. I transformed it into a
+          visually engaging deck that helped the team share their
+          achievements and insights with clarity. The completed presentation
+          helped the team present with confidence and earned positive
+          feedback from leadership.`,
+    wistiaId: "l7c75cr5na",
+    thumbnail: "/wistia/sample-3.jpg",
+  },
+  //   {
+  //     title: "Executive update (animation + hierarchy)",
+  //     description:
+  //       "Short before/after style walkthrough of executive-ready motion and structure.",
+  //     wistiaId: "zz8xoddehl",
+  //     thumbnail: "/wistia/sample-4.jpg",
+  //   },
+  //   {
+  //     title: "Investor narrative polish",
+  //     description:
+  //       "Tightened story flow and visual system for decision-room clarity.",
+  //     wistiaId: "ooxjsfgjwz",
+  //     thumbnail: "/wistia/sample-5.jpg",
+  //   },
+  //   {
+  //     title: "Data viz cleanup",
+  //     description: "Charts and KPI slides redesigned for instant comprehension.",
+  //     wistiaId: "4yjouuonvg",
+  //     thumbnail: "/wistia/sample-6.jpg",
+  //   },
+]
+
+// Wistia iframe embed URL pattern (no script embed needed)
+const wistiaEmbedUrl = (id: string) =>
+  `https://fast.wistia.net/embed/iframe/${id}?seo=false&videoFoam=true`
+
+// Fallback page URL (opens in new tab)
+const wistiaFallbackUrl = (id: string) =>
+  `https://mozmail-3.wistia.com/medias/${id}`
+---
+
+<section
+  id={SECTION_ID}
+  class="wistiaShowcase"
+  data-wistia-showcase
+  aria-labelledby="wistiaShowcase-title"
+>
+  <div class="shell">
+    <header class="wistiaShowcase__header">
+      <p class="wistiaShowcase__eyebrow">Work samples</p>
+      <h2 id="wistiaShowcase-title" class="wistiaShowcase__title">
+        Case Studies
+      </h2>
+      <p class="wistiaShowcase__intro">
+        Click a sample to watch. All samples are posted with permission from the
+        clients.
+      </p>
+    </header>
+
+    <div class="wistiaShowcase__grid">
+      {
+        items.map((item) => (
+          <article class="wistiaCard">
+            <button
+              class="wistiaCard__button"
+              type="button"
+              data-wistia-open
+              data-wistia-id={item.wistiaId}
+              data-wistia-embed={wistiaEmbedUrl(item.wistiaId)}
+              data-wistia-fallback={wistiaFallbackUrl(item.wistiaId)}
+              aria-label={`Watch: ${item.title}`}
+            >
+              <img
+                class="wistiaCard__thumb"
+                src={item.thumbnail}
+                alt={item.title}
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="wistiaCard__play" aria-hidden="true">
+                ▶
+              </div>
+            </button>
+
+            <h3 class="wistiaCard__title">{item.title}</h3>
+            <p class="wistiaCard__desc">{item.description}</p>
+
+            <a
+              class="wistiaCard__link"
+              href={wistiaFallbackUrl(item.wistiaId)}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open in new tab
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="wistiaModal" data-wistia-modal hidden aria-hidden="true">
+    <div class="wistiaModal__backdrop" data-wistia-close></div>
+
+    <div
+      class="wistiaModal__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Video preview"
+    >
+      <button
+        class="wistiaModal__close"
+        type="button"
+        data-wistia-close
+        aria-label="Close"
+      >
+        ✕
+      </button>
+
+      <div class="wistiaModal__frameWrap">
+        <!-- iframe injected here -->
+        <div class="wistiaModal__frame" data-wistia-frame></div>
+      </div>
+
+      <p class="wistiaModal__note">
+        If the video doesn’t load, it may be blocked by an ad blocker.
+        <a
+          class="wistiaModal__fallback"
+          data-wistia-fallback-link
+          href="#"
+          target="_blank"
+          rel="noreferrer">Open in new tab</a
+        >
+      </p>
+    </div>
+  </div>
+
+  <!-- Use external JS for reliability -->
+  <script src="/js/wistia-showcase.js" type="module"></script>
+</section>

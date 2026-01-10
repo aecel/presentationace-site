@@ -1,0 +1,136 @@
+---
+export type FAQItem = {
+  q: string
+  a: string
+}
+
+export type Props = {
+  title?: string
+  items: FAQItem[]
+  theme?: "light" | "dark"
+}
+
+const { title = "FAQs", items, theme = "light" } = Astro.props
+---
+
+<section
+  class:list={[
+    "faqSection",
+    theme === "dark" ? "faqSection--dark" : "faqSection--light",
+  ]}
+  aria-labelledby="faq-title"
+>
+  <div class="shell">
+    <h2 id="faq-title" class="faqSection__title">{title}</h2>
+
+    <div class="faqSection__items">
+      {
+        items.map((f) => (
+          <details class="faqSection__item">
+            <summary class="faqSection__q">{f.q}</summary>
+            <p class="faqSection__a">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+
+  <style>
+    .faqSection {
+      --accent: #cf729c;
+
+      --ink: #2a2c27;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: clamp(18px, 4vw, 28px) 16px;
+      color: var(--text);
+    }
+
+    .faqSection--light {
+      background: unset;
+    }
+
+    .faqSection--dark {
+      background: #0f1216;
+
+      --ink: #f2f4f8;
+      --text: #e8eaf0;
+      --muted: #a8afbd;
+
+      --card: rgba(21, 26, 32, 0.92);
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .faqSection .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .faqSection__title {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .faqSection__items {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .faqSection__item {
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      padding-top: 10px;
+    }
+
+    .faqSection--dark .faqSection__item {
+      border-top-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .faqSection__item:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .faqSection__q {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--ink);
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faqSection__q::after {
+      content: "+";
+      float: right;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    details[open] .faqSection__q::after {
+      content: "–";
+    }
+
+    .faqSection__a {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+  </style>
+</section>

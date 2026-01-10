@@ -1,0 +1,387 @@
+---
+/**
+ * Contact page (Formspree)
+ * GitHub Pages friendly (static) + client-side switching via external JS
+ */
+
+const FORM_ACTION = "https://formspree.io/f/meeobzzd" // <-- replace
+const EMAIL = "ace@presentationace.com"
+const SECTION_ID = "contact"
+---
+
+<section
+  id={SECTION_ID}
+  class="contactV2"
+  data-contact-form
+  aria-labelledby="contact-title"
+>
+  <div class="shell">
+    <header class="contactV2__header">
+      <p class="contactV2__eyebrow">Contact</p>
+      <h1 id="contact-title" class="contactV2__title">Let’s talk</h1>
+      <p class="contactV2__intro">
+        Tell me what you’re working on and I’ll recommend the simplest path.
+        Questions are welcome.
+      </p>
+    </header>
+
+    <div class="contactV2__card">
+      <div class="contactV2__modeLine" data-mode-line>
+        You’re inquiring about: <strong data-mode-label>—</strong>
+      </div>
+
+      <form class="contactV2__form" method="POST" action={FORM_ACTION}>
+        {/* Helpful hidden fields */}
+        <input
+          type="hidden"
+          name="_subject"
+          value="New website inquiry (Presentation Ace)"
+        />
+        <input type="hidden" name="page" value="/contact" />
+        <input type="hidden" name="intent" value="" data-field-intent />
+        <input type="hidden" name="plan" value="" data-field-plan />
+
+        {/* Honeypot */}
+        <input
+          class="hp"
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+        />
+
+        <div class="grid2">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" />
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+            />
+          </div>
+        </div>
+
+        {/* Switcher (still useful even when coming from pricing buttons) */}
+        <div class="field">
+          <label for="intentSelect">What are you inquiring about?</label>
+          <select id="intentSelect" name="intentSelect" data-intent-select>
+            <option value="retainer">Retainer</option>
+            <option value="project">Project (Hourly)</option>
+          </select>
+          <p class="hint">
+            This helps me route your request and ask fewer follow-ups.
+          </p>
+        </div>
+
+        {/* PROJECT FIELDS */}
+        <fieldset class="fieldset" data-intent="project" hidden>
+          <legend>Project details</legend>
+
+          <div class="grid2">
+            <div class="field">
+              <label for="deadline">Deadline / date (optional)</label>
+              <input
+                id="deadline"
+                name="deadline"
+                type="text"
+                placeholder="e.g., Jan 15, end of week, no deadline"
+              />
+            </div>
+
+            <div class="field">
+              <label for="slides">Rough slide count (optional)</label>
+              <input
+                id="slides"
+                name="slides"
+                type="text"
+                placeholder="e.g., 10–15 slides"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="deckLink">Deck link / file notes (optional)</label>
+            <input
+              id="deckLink"
+              name="deckLink"
+              type="text"
+              placeholder="Google Drive / Dropbox link, or 'I’ll email the PPTX'. All files are treated as confidential."
+            />
+          </div>
+
+          <div class="field">
+            <label for="projectMessage"
+              >What do you need help with? <span class="req">*</span></label
+            >
+            <textarea
+              id="projectMessage"
+              name="project_message"
+              rows="6"
+              placeholder="What is the deck for, who is it for, and what outcome do you want?"
+              required></textarea>
+          </div>
+        </fieldset>
+
+        {/* RETAINER FIELDS */}
+        <fieldset class="fieldset" data-intent="retainer" hidden>
+          <legend>Retainer details</legend>
+
+          <div class="grid2">
+            <div class="field">
+              <label for="startDate">Ideal start date (optional)</label>
+              <input
+                id="startDate"
+                name="startDate"
+                type="text"
+                placeholder="e.g., ASAP, next month, Feb 1"
+              />
+            </div>
+
+            <div class="field">
+              <label for="cadence">How often do decks come up? (optional)</label
+              >
+              <input
+                id="cadence"
+                name="cadence"
+                type="text"
+                placeholder="e.g., weekly updates, monthly reporting, ad hoc"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="retainerMessage"
+              >Questions / what you want to accomplish <span class="req">*</span
+              ></label
+            >
+            <textarea
+              id="retainerMessage"
+              name="retainer_message"
+              rows="6"
+              placeholder="What types of decks do you need support with, and what would 'a great retainer partnership' look like for you?"
+              required></textarea>
+          </div>
+
+          <p class="hint">
+            You can start a retainer without sending a deck yet. If you have a
+            reference deck or brand guidelines, great. If not, we’ll establish a
+            baseline quickly.
+          </p>
+        </fieldset>
+
+        <div class="actions">
+          <button class="btn" type="submit">Send inquiry</button>
+          <a
+            class="altLink"
+            href={`mailto:${EMAIL}?subject=${encodeURIComponent("Inquiry: Presentation support")}`}
+          >
+            Prefer email? {EMAIL}
+          </a>
+        </div>
+
+        <noscript>
+          <p class="hint">
+            JavaScript is off, so the form can’t auto-switch modes. Please
+            include in your message whether this is a <strong>project</strong> or
+            <strong>retainer</strong> inquiry.
+          </p>
+        </noscript>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/contact-form-intent.js" type="module"></script>
+
+  <style>
+    .contactV2 {
+      --ink: #2a2c27;
+      --accent: #cf729c;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: clamp(28px, 5vw, 56px) 16px;
+      color: var(--text);
+    }
+
+    .contactV2 .shell {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contactV2__header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .contactV2__eyebrow {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+    .contactV2__title {
+      margin: 0;
+      font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+      font-weight: 900;
+      color: var(--ink);
+    }
+    .contactV2__intro {
+      margin: 12px auto 0;
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .contactV2__card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .contactV2__modeLine {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      padding-bottom: 10px;
+    }
+
+    .contactV2__form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .field {
+      display: grid;
+      gap: 8px;
+      padding: 10px;
+    }
+    label {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+    .req {
+      color: var(--accent);
+      /* font-weight: 900; */
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 12px;
+      padding: 12px;
+      font: inherit;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.55;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: rgba(207, 114, 156, 0.55);
+      box-shadow: 0 0 0 4px rgba(207, 114, 156, 0.12);
+    }
+
+    .hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .fieldset {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    legend {
+      padding: 0 8px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      margin-top: 4px;
+      text-align: center;
+    }
+
+    .btn {
+      height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .btn:hover {
+      filter: brightness(0.98);
+    }
+
+    .altLink {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .altLink:hover {
+      text-decoration: underline;
+    }
+
+    .hp {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+      .actions {
+        justify-items: center;
+      }
+      .btn {
+        width: 100%;
+        max-width: 420px;
+      }
+    }
+
+    /* Ensure hidden works even if other CSS sets display */
+    .contactV2 [hidden] {
+      display: none !important;
+    }
+  </style>
+</section>

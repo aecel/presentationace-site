@@ -1,0 +1,373 @@
+<section id="Introduction" class="main-section">
+  <div class="mobile-introduction-images">
+    <div class="intro-images-layout">
+      <video
+        class="intro-image-mobile"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        width="345.6"
+        poster="/hero/FTP Server App Presentation Slides.jpg"
+      >
+        <source
+          src="/hero/FTP Server App Presentation Slides.webm"
+          type="video/webm"
+        />
+        <source
+          src="/hero/FTP Server App Presentation Slides.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <video
+        class="intro-image-mobile"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        width="345.6"
+        poster="/hero/Program Roadmap for a Digital Project Presentation Slides.jpg"
+      >
+        <source
+          src="/hero/Program Roadmap for a Digital Project Presentation Slides.webm"
+          type="video/webm"
+        />
+        <source
+          src="/hero/Program Roadmap for a Digital Project Presentation Slides.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <video
+        class="intro-image-mobile"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        width="345.6"
+        poster="/hero/Dashboard Application Presentation Slides.jpg"
+      >
+        <source
+          src="/hero/Dashboard Application Presentation Slides.webm"
+          type="video/webm"
+        />
+        <source
+          src="/hero/Dashboard Application Presentation Slides.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <img
+        class="intro-arrow-mobile"
+        width="170"
+        src="/hero/arrow-mobile.png"
+      />
+    </div>
+  </div>
+  <div class="introduction-layout">
+    <div
+      class="flex-center"
+      style={{
+        textAlign: "center",
+        zIndex: "1",
+      }}
+    >
+      <h1 class="grid-title-intro">Hi, I'm Ace</h1>
+      <div class="introduction-text">
+        Your on-call PowerPoint expert for executive presentations.
+      </div>
+      <div class="introduction-text" style={{ maxWidth: "400px" }}>
+        Transform your ideas into on-brand, high-impact slides so you can{" "}
+        <em class="emphasize-text">focus on what matters</em>.
+      </div>
+      <a class="hire-me-button" href="/services" rel="noreferrer">
+        See Services
+      </a>
+      <a class="email-link" href="/contact" rel="noreferrer">
+        Or contact me here →
+      </a>
+    </div>
+    <div class="desktop-introduction-images">
+      <div class="intro-images-layout">
+        <video
+          class="intro-image-desktop"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          width="384"
+          poster="/hero/FTP Server App Presentation Slides.jpg"
+        >
+          <source
+            src="/hero/FTP Server App Presentation Slides.webm"
+            type="video/webm"
+          />
+          <source
+            src="/hero/FTP Server App Presentation Slides.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <video
+          class="intro-image-desktop"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          width="384"
+          poster="/hero/Program Roadmap for a Digital Project Presentation Slides.jpg"
+        >
+          <source
+            src="/hero/Program Roadmap for a Digital Project Presentation Slides.webm"
+            type="video/webm"
+          />
+          <source
+            src="/hero/Program Roadmap for a Digital Project Presentation Slides.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <video
+          class="intro-image-desktop"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          width="384"
+          poster="/hero/Dashboard Application Presentation Slides.jpg"
+        >
+          <source
+            src="/hero/Dashboard Application Presentation Slides.webm"
+            type="video/webm"
+          />
+          <source
+            src="/hero/Dashboard Application Presentation Slides.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <img
+          class="intro-arrow-desktop"
+          width="200"
+          src="/hero/arrow-desktop.png"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #Introduction {
+    padding-top: 80px;
+    padding-bottom: 50px;
+  }
+
+  .flex-center,
+  .main-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--default-gap);
+  }
+  .introduction-layout {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    gap: 100px;
+  }
+  .introduction-text {
+    line-height: 2;
+  }
+  .emphasize-text {
+    color: var(--color-theme);
+    font-weight: bold;
+    font-style: normal;
+  }
+  .grid-title-intro {
+    background-color: var(--color-theme-blue);
+    color: #e6e6e6;
+    padding: 15px 25px 15px 25px;
+    font-size: 1.8rem;
+    min-width: 400px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .hire-me-button {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 15px 25px 15px 25px;
+    background-color: var(--color-theme);
+    border: none;
+    border-radius: 36px;
+  }
+  .email-link {
+    font-size: small;
+    color: var(--color-theme-dark);
+  }
+
+  .mobile-introduction-images {
+    display: none;
+    height: 500px;
+    margin-bottom: 24px;
+  }
+
+  .desktop-introduction-images {
+    display: block;
+    margin-left: 160px;
+  }
+
+  .intro-image-desktop,
+  .intro-image-mobile {
+    border-radius: 10px;
+    /* box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3); */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+    /* box-shadow: 0 10px 30px rgba(192, 9, 201, 0.15); */
+  }
+
+  .intro-images-layout {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .intro-image-desktop:nth-child(2) {
+    position: relative;
+    top: -30px;
+    right: 55px;
+  }
+
+  .intro-image-desktop:nth-child(3) {
+    position: relative;
+    top: -60px;
+  }
+
+  /* the arrow for desktop */
+  .intro-arrow-desktop {
+    position: absolute;
+    left: -200px;
+  }
+
+  .intro-image-mobile:nth-child(1) {
+    position: absolute;
+    top: 60px;
+    left: -220px;
+  }
+
+  .intro-image-mobile:nth-child(2) {
+    position: absolute;
+    top: 180px;
+    left: -150px;
+  }
+
+  .intro-image-mobile:nth-child(3) {
+    position: absolute;
+    top: 340px;
+    left: -200px;
+  }
+
+  .intro-arrow-mobile {
+    position: absolute;
+    top: 380px;
+    left: 140px;
+  }
+
+  @media (max-width: 1050px) {
+    .introduction-layout {
+      gap: 0px;
+    }
+  }
+  @media (max-width: 940px) {
+    #Introduction {
+      padding-top: 30px;
+    }
+    .mobile-introduction-images {
+      display: block;
+    }
+
+    .desktop-introduction-images {
+      display: none;
+    }
+
+    /* .grid-title-intro {
+      margin-top: 140px;
+    } */
+  }
+  @media (max-width: 610px) {
+    .intro-image-mobile {
+      width: 300px;
+    }
+
+    .intro-image-mobile:nth-child(1) {
+      position: absolute;
+      top: 60px;
+      left: -190px;
+    }
+
+    .intro-image-mobile:nth-child(2) {
+      position: absolute;
+      top: 190px;
+      left: -120px;
+    }
+
+    .intro-image-mobile:nth-child(3) {
+      position: absolute;
+      top: 350px;
+      left: -200px;
+    }
+
+    .intro-arrow-mobile {
+      position: absolute;
+      top: 360px;
+      left: 100px;
+      width: 130px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    :root {
+      --screen-margin: 20px;
+      --default-gap: 10px;
+    }
+
+    .grid-image {
+      width: 160px;
+    }
+  }
+  @media (max-width: 475px) {
+    .intro-image-mobile {
+      width: 250px;
+    }
+
+    .intro-image-mobile:nth-child(1) {
+      position: absolute;
+      top: 70px;
+      left: -170px;
+    }
+
+    .intro-image-mobile:nth-child(2) {
+      position: absolute;
+      top: 200px;
+      left: -120px;
+    }
+
+    .intro-image-mobile:nth-child(3) {
+      position: absolute;
+      top: 340px;
+      left: -180px;
+    }
+
+    .intro-arrow-mobile {
+      position: absolute;
+      top: 360px;
+      left: 70px;
+      width: 120px;
+    }
+  }
+</style>

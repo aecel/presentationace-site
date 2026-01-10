@@ -1,0 +1,242 @@
+.servicesTabs {
+  --ink: #2a2c27;
+  --accent: #cf729c;
+  --accent-ink: #ffffff;
+
+  /* --bg: #ffffff; */
+  --text: #2b2b2b;
+  --muted: #6e6e6e;
+
+  --card: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --radius: 16px;
+
+  padding: clamp(32px, 5vw, 64px) 16px;
+  color: var(--text);
+}
+
+.servicesTabs .shell {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.servicesTabs__header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.servicesTabs__eyebrow {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.servicesTabs__title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.servicesTabs__intro {
+  margin: 12px auto 0;
+  max-width: 860px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* Tabs row */
+.servicesTabs__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 18px auto 18px;
+  max-width: 1100px;
+}
+
+.servicesTabs__tab {
+  appearance: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+  white-space: nowrap;
+}
+
+.servicesTabs__tab:hover {
+  border-color: rgba(207, 114, 156, 0.55);
+}
+
+.servicesTabs__tab.is-active {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Panels container */
+.servicePanel[hidden] {
+  display: none;
+}
+.servicesTabs__panels {
+  margin-top: 8px;
+}
+
+/* Panel card */
+.servicePanel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 22px 18px;
+}
+
+.servicePanel.is-hidden {
+  display: none;
+}
+
+.servicePanel__title {
+  margin: 0;
+  font-weight: 900;
+  color: var(--ink);
+  font-size: 1.15rem;
+}
+
+.servicePanel__desc {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Before/After */
+.servicePanel__media {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.servicePanel__shot {
+  margin: 0;
+  text-align: center;
+}
+
+.servicePanel__img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  display: block;
+}
+
+.servicePanel__cap {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.servicePanel__arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.servicePanel__arrowIcon {
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Needs list */
+.servicePanel__body {
+  margin-top: 14px;
+}
+
+.servicePanel__needTitle {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.servicePanel__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.servicePanel__list li {
+  position: relative;
+  padding-left: 18px;
+  margin: 12px 0;
+}
+
+.servicePanel__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.servicePanel__note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.92rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .servicesTabs__tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 6px 4px 12px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .servicesTabs__tab {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  /* Optional: hide ugly scrollbar in some browsers */
+  .servicesTabs__tabs::-webkit-scrollbar {
+    height: 8px;
+  }
+  .servicesTabs__tabs::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 999px;
+  }
+}

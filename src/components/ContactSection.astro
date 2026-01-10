@@ -1,0 +1,87 @@
+---
+/** Replace these */
+const CALENDLY_URL = "https://calendly.com/presentationace"
+const EMAIL = "ace@presentationace.com"
+
+/** Optional: tweak these bits of copy */
+const RESPONSE_TIME = "1 business day"
+const SECTION_ID = "contact"
+---
+
+<section id={SECTION_ID} class="contact" aria-labelledby="contact-title">
+  <div class="shell">
+    <header class="contact__header">
+      <p class="contact__eyebrow">Contact</p>
+      <h2 id="contact-title" class="contact__title">Call / Email</h2>
+      <p class="contact__intro">
+        The fastest way to get started is to send your deck (or rough draft) and
+        a bit of context. If you’d rather talk it through first, grab a time
+        below.
+      </p>
+    </header>
+
+    <div class="contact__grid">
+      <!-- Schedule -->
+      <article
+        class="contact-card contact-card--highlight"
+        aria-label="Schedule a call"
+      >
+        <h3 class="contact-card__title">Schedule a call</h3>
+        <p class="contact-card__text">
+          Ideal for new engagements, scope alignment, or deciding between
+          project-based vs retainer.
+        </p>
+
+        <ul class="contact-card__list">
+          <li>Quick fit check + timeline discussion</li>
+          <li>Share context, audience, and goals</li>
+          <li>Walk through existing deck (if you have one)</li>
+        </ul>
+
+        <a
+          class="contact-card__cta"
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Book on Calendly
+        </a>
+
+        <p class="contact-card__note contact-card__note--muted">
+          You’ll be redirected to Calendly.
+        </p>
+      </article>
+
+      <!-- Email -->
+      <article class="contact-card" aria-label="Email">
+        <h3 class="contact-card__title">Email</h3>
+        <p class="contact-card__text">
+          Prefer async? Email works great. Especially if you already have a file
+          or brief to share.
+        </p>
+
+        <ul class="contact-card__list">
+          <li>Typical reply: within <strong>{RESPONSE_TIME}</strong></li>
+          <li>Confidential materials welcome</li>
+          <li>Include deadline (if any), slide count, and source format</li>
+        </ul>
+
+        <a
+          class="contact-card__cta contact-card__cta--secondary"
+          href={`mailto:${EMAIL}?subject=Hello%20Ace!&body=Hi%20Ace%2C%0A%0AI%E2%80%99d%20love%20help%20with%20a%20presentation.%20Here%E2%80%99s%20what%20I%20have%3A%0A%0A-%20Goal%3A%20%0A-%20Audience%3A%20%0A-%20Deadline%3A%20%0A-%20Current%20deck%20link%20or%20attachment%3A%20%0A-%20Notes%20(brand%2C%20style%2C%20animation)%3A%20%0A`}
+        >
+          Email me
+        </a>
+
+        <p class="contact-card__note">
+          <strong>{EMAIL}</strong>
+        </p>
+      </article>
+    </div>
+
+    <p class="contact__footer">
+      Not sure which option fits? Email me a quick summary and I’ll recommend
+      the simplest path.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,91 @@
+---
+import "../styles/client-logos.css"
+
+type ClientLogo = {
+  name: string
+  src: string // path under /public
+  href?: string // optional: link to client site
+  alt?: string
+}
+
+const SECTION_ID = "clients"
+
+const EYEBROW = "Trusted by"
+const TITLE = "Past Work"
+const SUBTITLE = "A selection of companies I’ve worked with."
+
+// Put your logo files in: /public/logos/...
+// Prefer SVG when possible. PNG also fine with transparent background.
+const logos: ClientLogo[] = [
+  { name: "Blue Matter", src: "/logos/Blue Matter.png" },
+  { name: "Cobham", src: "/logos/Cobham.png" },
+  { name: "eData Services", src: "/logos/Edata Services.png" },
+  { name: "Epinion", src: "/logos/Epinion.png" },
+  { name: "GaleSun Tech", src: "/logos/GaleSun Tech.png" },
+  { name: "Gates Foundation", src: "/logos/Gates Foundation.png" },
+  { name: "H&Z", src: "/logos/H&Z.svg" },
+  { name: "KPMG", src: "/logos/KPMG.png" },
+  { name: "LionBridge", src: "/logos/LionBridge.png" },
+  { name: "Paramount", src: "/logos/Paramount.png" },
+  { name: "Siemens", src: "/logos/Siemens.svg" },
+  { name: "Trace3", src: "/logos/Trace3.webp" },
+  { name: "Universal", src: "/logos/Universal.png" },
+  { name: "Valcon", src: "/logos/Valcon.svg" },
+  // Add more...
+]
+
+// Optional footer note
+const FOOTNOTE =
+  "Logos shown for identification only. All trademarks belong to their respective owners."
+---
+
+<section
+  id={SECTION_ID}
+  class="clientLogos"
+  aria-labelledby="client-logos-title"
+>
+  <div class="shell">
+    <header class="clientLogos__header">
+      <!-- <p class="clientLogos__eyebrow">{EYEBROW}</p> -->
+      <h2 id="client-logos-title" class="clientLogos__title">{TITLE}</h2>
+      <p class="clientLogos__subtitle">{SUBTITLE}</p>
+    </header>
+
+    <div class="clientLogos__grid" role="list" aria-label="Client logos">
+      {
+        logos.map((logo) => (
+          <div class="clientLogos__item" role="listitem">
+            {logo.href ? (
+              <a
+                class="clientLogos__link"
+                href={logo.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  class="clientLogos__img"
+                  src={logo.src}
+                  alt={logo.alt ?? logo.name}
+                  title={logo.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            ) : (
+              <img
+                class="clientLogos__img"
+                src={logo.src}
+                alt={logo.alt ?? logo.name}
+                title={logo.name}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+          </div>
+        ))
+      }
+    </div>
+
+    {FOOTNOTE && <p class="clientLogos__footnote">{FOOTNOTE}</p>}
+  </div>
+</section>

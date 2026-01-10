@@ -1,0 +1,288 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+const LAST_UPDATED = "January 2026" // update as needed
+const EMAIL = "ace@presentationace.com"
+
+// Toggle these depending on what you actually use:
+const USES_FORMSPREE = true
+const USES_CALENDLY = true
+const USES_WISTIA = true
+const USES_GRAVATAR = false
+const USES_BASIN = true
+const USES_KITCHEN_PORTAL = true
+---
+
+<BaseLayout
+  title="Privacy | Presentation Ace"
+  description="Privacy policy for Presentation Ace."
+>
+  <main class="privacy">
+    <div class="shell">
+      <header class="privacy__header">
+        <p class="privacy__eyebrow">Privacy</p>
+        <h1 class="privacy__title">Privacy policy</h1>
+        <p class="privacy__intro">
+          I take privacy seriously. This page explains what information is
+          collected on this site, how it is used, and the third-party services
+          involved.
+        </p>
+        <p class="privacy__updated">
+          <strong>Last updated:</strong>
+          {LAST_UPDATED}
+        </p>
+      </header>
+
+      <section class="card" aria-label="What I collect">
+        <h2 class="card__title">Information collected</h2>
+        <p class="text">
+          This site may collect the following information when you voluntarily
+          submit it:
+        </p>
+        <ul class="list">
+          <li>
+            Name, email address, and any details you include in messages or
+            forms
+          </li>
+          <li>
+            Project information you choose to share (deck context, goals,
+            timelines)
+          </li>
+          <li>
+            Basic technical information sent by your browser (for example,
+            device type and browser), which may be included in form submissions
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" aria-label="How I use it">
+        <h2 class="card__title">How information is used</h2>
+        <ul class="list">
+          <li>To respond to inquiries and provide services</li>
+          <li>To clarify project requirements and preferences</li>
+          <li>To improve internal workflow and communication</li>
+          <li>To prevent spam and abuse</li>
+        </ul>
+        <p class="text">I do not sell your personal information.</p>
+      </section>
+
+      <section class="card" aria-label="Third party services">
+        <h2 class="card__title">Third-party services</h2>
+        <p class="text">
+          This site may use third-party services to provide functionality. These
+          providers may process data according to their own policies.
+        </p>
+        <ul class="list">
+          {
+            USES_FORMSPREE && (
+              <li>
+                <strong>Formspree</strong>: used to receive form submissions.
+                Form content is transmitted to Formspree so it can be delivered
+                to me.
+              </li>
+            )
+          }
+          {
+            USES_CALENDLY && (
+              <li>
+                <strong>Calendly</strong>: used for scheduling calls. Scheduling
+                details you submit are processed by Calendly.
+              </li>
+            )
+          }
+          {
+            USES_WISTIA && (
+              <li>
+                <strong>Wistia</strong>: used to host embedded video samples.
+                Video embeds may be blocked by some ad blockers.
+              </li>
+            )
+          }
+          {
+            USES_GRAVATAR && (
+              <li>
+                <strong>Gravatar</strong>: used to display an avatar image (if
+                enabled). Your browser may request the image from Gravatar.
+              </li>
+            )
+          }
+          {
+            USES_BASIN && (
+              <li>
+                <strong>Basin</strong>: used to receive certain form
+                submissions. Form content is transmitted to Basin so it can be
+                delivered to me.
+              </li>
+            )
+          }
+
+          {
+            USES_KITCHEN_PORTAL && (
+              <li>
+                <strong>Client portal provider</strong>: the client portal at{" "}
+                <strong>portal.presentationace.com</strong> is powered by a
+                third-party service (Kitchen.co). Information submitted through
+                the portal (requests, files, and notes) may be processed and
+                stored by the portal provider to provide the service.
+              </li>
+            )
+          }
+        </ul>
+      </section>
+
+      <section class="card" aria-label="Cookies and tracking">
+        <h2 class="card__title">Cookies and tracking</h2>
+        <p class="text">
+          I do not intentionally use invasive tracking. Some third-party
+          services may set cookies or collect usage data as part of their normal
+          operation. If you use an ad blocker or privacy tools, some embeds may
+          not load.
+        </p>
+      </section>
+
+      <section class="card" aria-label="Confidentiality">
+        <h2 class="card__title">Confidentiality</h2>
+        <p class="text">
+          Client materials are treated as confidential by default. If needed, I
+          am happy to sign an NDA.
+        </p>
+        <p class="text">
+          Avoid submitting highly sensitive personal data unless necessary. If
+          needed, ask about an NDA and secure file transfer options.
+        </p>
+      </section>
+
+      <section class="card" aria-label="Data retention">
+        <h2 class="card__title">Data retention</h2>
+        <p class="text">
+          I keep messages and project-related information only as long as needed
+          for communication, delivery, and record-keeping. If you would like
+          your information removed, email me and I will do my best to
+          accommodate the request, subject to any legal or accounting
+          obligations.
+        </p>
+      </section>
+
+      <section class="card" aria-label="Contact">
+        <h2 class="card__title">Contact</h2>
+        <p class="text">
+          If you have questions about privacy, email:
+          <a class="link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <style>
+    .privacy {
+      --ink: #2a2c27;
+      --accent: #cf729c;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: 42px 16px;
+      color: var(--text);
+    }
+
+    .privacy .shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .privacy__header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .privacy__eyebrow {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .privacy__title {
+      margin: 0;
+      font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .privacy__intro {
+      margin: 12px auto 0;
+      max-width: 860px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .privacy__updated {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .card__title {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .text {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .list {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 18px;
+      margin: 10px 0;
+    }
+
+    .list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.22em;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .link {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</BaseLayout>

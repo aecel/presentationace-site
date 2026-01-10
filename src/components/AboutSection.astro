@@ -1,0 +1,326 @@
+---
+/**
+ * AboutSection (personal, conversion-friendly, no em dashes)
+ * Usage: <AboutSection />
+ * Theme: switch section class to "about about--light" or "about about--dark"
+ */
+
+const SECTION_ID = "about"
+
+const EYEBROW = "About"
+const TITLE =
+  "Hi, I’m Ace. Executive presentation designer and on‑call PowerPoint partner."
+const INTRO =
+  "I help VPs and C‑suite leaders turn rough inputs into executive‑ready decks with clear structure, disciplined design, and calm delivery. My goal is to be the reliable person you can count on when presentations matter."
+const presentationDesignYears = new Date().getFullYear() - 2017
+const illustrationYears = new Date().getFullYear() - 2014
+const stats = [
+  { label: "Presentation design", value: presentationDesignYears + "+ years" },
+  { label: "Illustration", value: illustrationYears + "+ years" },
+  { label: "Best fit", value: "Executive cadence decks" },
+]
+
+const whatIDoTitle = "What I help with most"
+const whatIDo = [
+  "Executive staff meeting updates, operating reviews, QBRs",
+  "Board prep decks and leadership narratives",
+  "Strategy and priorities decks for alignment and decisions",
+  "KPI and data visualization slides that read clearly in seconds",
+  "Slide systems and templates that keep decks consistent over time",
+]
+
+const philosophyTitle = "My design philosophy"
+const philosophy = [
+  {
+    title: "Empathy first",
+    text: "Different teams want different things. Some want photography over illustration. Some prefer minimal slides. Others need richer visuals. My job is to understand your preferences and build the deck that works for your audience, not mine.",
+  },
+  {
+    title: "Communication that fits you",
+    text: "I adapt to the way you like to work. Email, chat, async notes, quick calls, or a mix. The goal is a low‑friction process where you always know what is happening next.",
+  },
+  {
+    title: "Consistency over time",
+    text: "I learn what you like as we work together, then apply it consistently. That is why retainers work well. The longer we collaborate, the faster and smoother everything gets.",
+  },
+]
+
+const advantageTitle = "A practical advantage"
+const advantageText =
+  "I’m based in the Philippines, which often works in your favor if you are in the US / Europe. If you send a deck around 5pm your time, it is usually the start of my day. You can often wake up to meaningful progress and a clear next step."
+
+const whatYouGetTitle = "What you can expect working with me"
+const whatYouGet = [
+  "Confidentiality by default, NDA-friendly if needed",
+  "Clear communication and a calm, judgment-free process",
+  "Feedback-friendly collaboration, no ego attached",
+  "Purposeful animation by default, optional if you prefer fully static",
+  "Vector-first assets whenever possible, icons and illustrations stay editable",
+  "Clean file delivery that stays maintainable for future updates",
+  "I enjoy learning new tools and workflows when it helps your team",
+]
+
+const toolsTitle = "Tools I work with"
+const toolsNote =
+  "Most work is delivered in PowerPoint. I can also collaborate with your existing ecosystem when needed."
+
+const tools: { name: string; src: string }[] = [
+  { name: "PowerPoint", src: "/tools/powerpoint.svg" },
+  { name: "Google Slides", src: "/tools/google-slides.svg" },
+  { name: "Keynote", src: "/tools/keynote.svg" },
+  { name: "Figma", src: "/tools/figma.svg" },
+  { name: "Adobe Illustrator", src: "/tools/illustrator.svg" },
+  { name: "Notion", src: "/tools/notion.svg" },
+  // Add/remove freely
+]
+---
+
+<section
+  id={SECTION_ID}
+  class="about about--light"
+  aria-labelledby="about-title"
+>
+  <div class="shell">
+    <header class="about__header">
+      <p class="about__eyebrow">{EYEBROW}</p>
+      <h1 id="about-title" class="about__title">{TITLE}</h1>
+      <p class="about__intro">{INTRO}</p>
+    </header>
+
+    <div class="about__stats" aria-label="Key stats">
+      {
+        stats.map((s) => (
+          <div class="stat">
+            <div class="stat__value">{s.value}</div>
+            <div class="stat__label">{s.label}</div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="about__grid">
+      <section class="card" aria-label={whatIDoTitle}>
+        <h2 class="card__title">{whatIDoTitle}</h2>
+        <ul class="list">
+          {whatIDo.map((x) => <li>{x}</li>)}
+        </ul>
+      </section>
+
+      <section class="card" aria-label={philosophyTitle}>
+        <h2 class="card__title">{philosophyTitle}</h2>
+
+        <div class="stack">
+          {
+            philosophy.map((p) => (
+              <div class="stack__item">
+                <h3 class="stack__title">{p.title}</h3>
+                <p class="stack__text">{p.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="card card--wide" aria-label={advantageTitle}>
+        <h2 class="card__title">{advantageTitle}</h2>
+        <p class="card__text">{advantageText}</p>
+      </section>
+
+      <section class="card card--wide" aria-label={whatYouGetTitle}>
+        <h2 class="card__title">{whatYouGetTitle}</h2>
+        <ul class="list">
+          {whatYouGet.map((x) => <li>{x}</li>)}
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <style>
+    .about {
+      --accent: #cf729c;
+
+      --ink: #2a2c27;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: clamp(28px, 5vw, 56px) 16px;
+      color: var(--text);
+    }
+
+    .about--light {
+      background: unset;
+    }
+
+    .about--dark {
+      background: #0f1216;
+
+      --ink: #f2f4f8;
+      --text: #e8eaf0;
+      --muted: #a8afbd;
+
+      --card: rgba(21, 26, 32, 0.92);
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .about .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .about__header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .about__eyebrow {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .about__title {
+      margin: 0;
+      font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    .about__intro {
+      margin: 12px auto 0;
+      max-width: 900px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .about__stats {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 14px 12px;
+      text-align: center;
+    }
+
+    .stat__value {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1.1rem;
+    }
+
+    .stat__label {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .about__grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 100%;
+    }
+
+    .card--wide {
+      grid-column: 1 / -1;
+    }
+
+    .card__title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .card__text {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    .stack__title {
+      margin: 0;
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 0.98rem;
+    }
+
+    .stack__text {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 18px;
+      margin: 10px 0;
+    }
+
+    .list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.22em;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    @media (max-width: 980px) {
+      .about__grid {
+        grid-template-columns: 1fr;
+      }
+      .about__stats {
+        grid-template-columns: 1fr;
+      }
+      .card--wide {
+        grid-column: auto;
+      }
+    }
+  </style>
+</section>

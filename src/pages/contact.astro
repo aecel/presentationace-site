@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import "../styles/contact_dark.css"
+import ContactSection from "../components/ContactSection.astro"
+import FeedbackSection from "../components/FeedbackSection.astro"
+import ContactFormSection from "../components/ContactFormSection.astro"
+// import OnboardingSection from "../components/OnboardingSection.astro"
+
+---
+
+<BaseLayout
+  title="Contact | Presentation Ace"
+  description="Executive presentation design services and ongoing retainer support for founders, VPs, and senior leaders."
+>
+  <!-- Other sections... -->
+
+  <!-- <EngagementOptions /> -->
+  <!-- <RetainerPackages /> -->
+
+  <ContactFormSection />
+  <ContactSection />
+  <FeedbackSection />
+  <!-- <OnboardingSection /> -->
+
+  <!-- Other sections... -->
+</BaseLayout>

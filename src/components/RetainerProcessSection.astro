@@ -1,0 +1,270 @@
+---
+/**
+ * ProcessSection (Retainer workflow, dark mode)
+ * Usage: <ProcessSection />
+ */
+
+const SECTION_ID = "process"
+
+const EYEBROW = "Process"
+const TITLE = "How the retainer works"
+const INTRO =
+  "A calm, repeatable workflow designed for ongoing deck support. Clear queueing, predictable turnaround, and low-friction collaboration."
+
+const steps: {
+  number: string
+  title: string
+  description: string
+  bullets?: string[]
+}[] = [
+  {
+    number: "1",
+    title: "Kickoff + preferences",
+    description:
+      "We align on your deck types, brand standards, and what “executive-ready” means for your team. I’ll learn your preferences quickly so each month gets smoother.",
+    bullets: [
+      "Brand guidelines + sample decks",
+      "Tone and level of polish",
+      "Preferred feedback style (async vs call)",
+      "Access to fonts/assets (if needed)",
+    ],
+  },
+  {
+    number: "2",
+    title: "Submit requests (portal)",
+    description:
+      "You send requests through the client portal with files, context, and desired outcome. I’ll confirm what I need (if anything) and provide an ETA based on the queue.",
+    bullets: [
+      "One place for assets + links + notes",
+      "Clear scope per request",
+      "ETA + next steps confirmed",
+    ],
+  },
+  {
+    number: "3",
+    title: "Build in reviewable batches",
+    description:
+      "Work happens in small, reviewable batches so you’re never surprised. You review, consolidate feedback, and I iterate quickly. Design, structure, data viz, and light animation included where it helps clarity.",
+    bullets: [
+      "Fast iteration loops",
+      "Active request limits keep things moving",
+      "Light animation by default",
+      "Clean versioning",
+    ],
+  },
+  {
+    number: "4",
+    title: "Monthly rhythm + rollover",
+    description:
+      "Each month starts with reserved capacity and priority handling. Unused hours can roll over (up to 10%), and anything beyond the plan is billed at the standard rate.",
+    bullets: [
+      "Billed monthly in advance",
+      "Reserved capacity + priority queue",
+      "Up to 10% rollover (then expires)",
+      "Overage billed at standard rate",
+    ],
+  },
+]
+
+const FOOTER =
+  "If you’re not sure what to request first, send the deck you’re presenting next."
+---
+
+<section id={SECTION_ID} class="process" aria-labelledby="process-title">
+  <div class="shell">
+    <header class="process__header">
+      <p class="process__eyebrow">{EYEBROW}</p>
+      <h2 id="process-title" class="process__title">{TITLE}</h2>
+      <p class="process__intro">{INTRO}</p>
+    </header>
+
+    <ol class="process__grid" aria-label="Retainer process steps">
+      {
+        steps.map((step) => (
+          <li class="processStep">
+            <div class="processStep__top">
+              <div class="processStep__num" aria-hidden="true">
+                {step.number}
+              </div>
+              <h3 class="processStep__title">{step.title}</h3>
+            </div>
+
+            <p class="processStep__desc">{step.description}</p>
+
+            {step.bullets && (
+              <ul
+                class="processStep__list"
+                aria-label={`${step.title} details`}
+              >
+                {step.bullets.map((b) => (
+                  <li>{b}</li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="process__footer">{FOOTER}</p>
+  </div>
+</section>
+
+<style>
+  .process {
+    --accent: #cf729c;
+    --accent-ink: #ffffff;
+
+    --bg: #0f1216;
+    --card: #151a20;
+
+    --ink: #f2f4f8;
+    --text: #e8eaf0;
+    --muted: #a8afbd;
+
+    --border: rgba(255, 255, 255, 0.1);
+    --divider: rgba(255, 255, 255, 0.08);
+    --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    --radius: 16px;
+
+    padding: clamp(32px, 5vw, 64px) 16px;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .process .shell {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .process__header {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .process__eyebrow {
+    margin: 0 0 10px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+
+  .process__title {
+    margin: 0;
+    font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .process__intro {
+    margin: 12px auto 0;
+    max-width: 900px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* Grid */
+  .process__grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  /* Step card */
+  .processStep {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 18px 16px;
+    height: 100%;
+  }
+
+  .processStep__top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .processStep__num {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    flex: 0 0 auto;
+  }
+
+  .processStep__title {
+    margin: 0;
+    color: var(--ink);
+    font-size: 1.05rem;
+    /* font-weight: 900; */
+  }
+
+  .processStep__desc {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .processStep__list {
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    border-top: 1px solid var(--divider);
+    padding-top: 10px;
+  }
+
+  .processStep__list li {
+    position: relative;
+    padding-left: 18px;
+    margin: 10px 0;
+  }
+
+  .processStep__list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.25em;
+    color: var(--accent);
+    font-weight: 900;
+    font-size: 1.05em;
+    line-height: 1;
+  }
+
+  .process__footer {
+    margin: 18px auto 0;
+    text-align: center;
+    color: var(--muted);
+    max-width: 900px;
+    line-height: 1.6;
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .process__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .process__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

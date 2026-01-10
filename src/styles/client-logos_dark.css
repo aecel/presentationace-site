@@ -1,0 +1,152 @@
+.clientLogos {
+  --accent: #cf729c;
+  --accent-ink: #ffffff;
+
+  /* Dark theme tokens */
+  --bg: #0f1216;
+  --tile: #151a20;
+
+  --ink: #f2f4f8; /* headings */
+  --text: #e8eaf0; /* body */
+  --muted: #a8afbd; /* secondary */
+
+  --border: rgba(255, 255, 255, 0.1);
+  --divider: rgba(255, 255, 255, 0.08);
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  --tileShadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+
+  --radius: 16px;
+
+  padding: clamp(28px, 5vw, 56px) 16px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.clientLogos .shell {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.clientLogos__header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.clientLogos__title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.clientLogos__subtitle {
+  margin: 10px auto 0;
+  max-width: 860px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Flex-wrap logo wall */
+.clientLogos__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  align-items: stretch;
+  margin-top: 18px;
+}
+
+/* Each logo tile */
+.clientLogos__item {
+  /* consistent stage */
+  height: 88px;
+  padding: 14px 12px;
+
+  /* tile look (recommended in dark mode) */
+  background: var(--tile);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--tileShadow);
+
+  /* center content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* responsive sizing */
+  flex: 0 1 clamp(140px, 18vw, 180px);
+}
+
+/* Logos */
+.clientLogos__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  padding: 10px;
+
+  /*
+    Dark mode tuning:
+    - grayscale keeps a unified look
+    - brighten improves visibility for dark SVGs/PNGs
+  */
+  filter: grayscale(1) contrast(1.05) brightness(1.15);
+  opacity: 0.9;
+  transition: filter 200ms ease, opacity 200ms ease, transform 200ms ease;
+}
+
+/* If the logo is a link */
+.clientLogos__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+/* Hover: reveal color + slight lift */
+.clientLogos__link:hover .clientLogos__img {
+  filter: grayscale(0) contrast(1.05) brightness(1.05);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Footnote */
+.clientLogos__footnote {
+  margin: 14px auto 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 860px;
+}
+
+/* Responsive */
+@media (min-width: 1100px) {
+  .clientLogos__item {
+    flex-basis: 170px;
+  }
+}
+
+@media (max-width: 720px) {
+  .clientLogos__item {
+    flex-basis: 46%;
+  }
+}
+
+@media (max-width: 420px) {
+  .clientLogos__item {
+    flex-basis: 100%;
+  }
+}
+
+/* Optional tweak (if some logos look “washed out”)
+
+If a few PNGs look too bright in dark mode, reduce brightness slightly: */
+
+.clientLogos__img {
+  filter: grayscale(1) contrast(1.05) brightness(1.08);
+}

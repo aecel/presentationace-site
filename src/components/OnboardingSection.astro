@@ -1,0 +1,449 @@
+---
+/**
+ * OnboardingSection
+ * Usage: <OnboardingSection />
+ * Theme: switch class "onboarding onboarding--light" or "onboarding onboarding--dark"
+ */
+
+const SECTION_ID = "onboarding"
+
+/** EDIT THESE TO MATCH YOUR CURRENT PRICING */
+const HOURLY_RATE = "$110/hr"
+const RUSH_PREMIUM = "+50%"
+const TYPICAL_TURNAROUND = "1–2 weeks (capacity-dependent)"
+const FAST_TURNAROUND_NOTE =
+  "Faster turnaround may be available for retainer clients, depending on queue and scope."
+
+const EYEBROW = "Onboarding"
+const TITLE = "Start here"
+const INTRO =
+  "This page is a simple guide to working together. It reduces back-and-forth, sets expectations early, and helps me match your preferences faster."
+
+const steps = [
+  {
+    title: "Send what you have",
+    text: "No need to over-format. A PPTX is great, but a doc, outline, screenshots, PDF, or even a quick brain-dump works.",
+  },
+  {
+    title: "I deliver a first pass quickly",
+    text: "I start with a small, reviewable batch so you can react early. That keeps the project aligned and avoids surprises.",
+  },
+  {
+    title: "You review and guide (or delegate)",
+    text: "Share feedback in whatever format is easiest. If you are busy, you can also tell me to take the lead and I will make judgment calls.",
+  },
+  //   {
+  //     title: "Polish, finalize, and handoff",
+  //     text: "You receive a clean, maintainable deck. I send a summary of what changed and next steps. Billing is straightforward and predictable.",
+  //   },
+  {
+    title: "Polish, finalize, and invoicing",
+    text: "Once you approve the work, I send the invoice and deliver the final files. If a project goes on pause for any reason, I may invoice for completed work to date. If the project resumes later, the remaining work is invoiced upon approval at the end.",
+  },
+]
+
+const whatToSend = [
+  "The goal of the deck (what should the audience understand or decide?)",
+  "Audience and context (exec update, board prep, QBR, keynote, internal alignment)",
+  "Any deadline or meeting date (even if it is flexible)",
+  "Your source materials (PPTX, docs, notes, spreadsheets, screenshots)",
+  "Brand guidelines, templates, or a reference deck (if available)",
+]
+
+const preferencePrompts = [
+  "Do you prefer minimal slides or more visual slides?",
+  "Photos vs illustrations vs icons/shapes only?",
+  "Light theme vs dark theme?",
+  "More animation or mostly static?",
+  "Any hard no’s (styles, imagery, AI usage preferences, brand constraints)?",
+]
+
+const feedbackTips = [
+  "PowerPoint comments are ideal when possible.",
+  "If you like to sketch feedback, PowerPoint’s Freeform: Scribble (Insert → Shapes) works well.",
+  "Email or chat feedback is fine too. Consolidated feedback helps the fastest.",
+]
+
+const goodToKnow = [
+  `Rate: ${HOURLY_RATE} (time tracked).`,
+  "Projects start with a 5-hour prepaid block. After that, I invoice on approval.",
+  `Typical turnaround: ${TYPICAL_TURNAROUND}.`,
+  `Rush: requests needed in under ~3 business days, on weekends, or outside regular hours may be billed at ${RUSH_PREMIUM}. I will confirm before starting.`,
+  "Confidentiality is standard. NDA-friendly if needed.",
+  "Purposeful animation included by default. Animation-heavy builds or technical interactivity can be scoped if needed.",
+  "PowerPoint is the primary workflow, but I can adapt to Google Slides, Keynote, SharePoint, or your team’s tools.",
+  "Company card is welcome (if your payment flow supports it).",
+  FAST_TURNAROUND_NOTE,
+]
+
+const aftercare = [
+  "Small tweaks and updates are welcome after delivery.",
+  "If you have any feedback on my work or want to share how the presentation went, I would genuinely love to hear it. I always enjoy knowing how things turned out and whether the design helped make a positive impact.",
+  "If you know anyone who might need similar support, it would mean a lot if you would consider passing my name along.",
+]
+
+const CTA_TITLE = "Ready when you are"
+const CTA_TEXT =
+  "If you already have a deck, send it. If you do not, send a quick summary of the goal and audience and I will guide the next step."
+const CTA_PRIMARY_LABEL = "Contact"
+const CTA_PRIMARY_HREF = "/contact"
+const CTA_SECONDARY_LABEL = "View pricing"
+const CTA_SECONDARY_HREF = "/pricing"
+---
+
+<section
+  id={SECTION_ID}
+  class="onboarding onboarding--light"
+  aria-labelledby="onboarding-title"
+>
+  <div class="shell">
+    <header class="onboarding__header">
+      <p class="onboarding__eyebrow">{EYEBROW}</p>
+      <h2 id="onboarding-title" class="onboarding__title">{TITLE}</h2>
+      <p class="onboarding__intro">{INTRO}</p>
+    </header>
+
+    <div class="onboarding__grid">
+      <section class="card" aria-label="How we work together">
+        <h3 class="card__title">How we work together</h3>
+        <ol class="steps">
+          {
+            steps.map((s) => (
+              <li class="step">
+                <div class="step__title">{s.title}</div>
+                <div class="step__text">{s.text}</div>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <section class="card" aria-label="What to send">
+        <h3 class="card__title">What to send (to start fast)</h3>
+        <ul class="list">
+          {whatToSend.map((x) => <li>{x}</li>)}
+        </ul>
+
+        <details class="details">
+          <summary class="details__summary">Accepted input formats</summary>
+          <div class="details__body">
+            PPTX, Google Slides, Word docs, PDFs, emails, spreadsheets,
+            screenshots, scripts, and rough notes are all fine. If you are
+            pressed for time, a short brain-dump is enough to begin.
+          </div>
+        </details>
+      </section>
+
+      <section class="card" aria-label="Preferences and style">
+        <h3 class="card__title">Preferences and style</h3>
+        <p class="card__text">
+          Presentation design is subjective. The fastest way to reduce guesswork
+          is to clarify what “good” looks like for you.
+        </p>
+        <ul class="list">
+          {preferencePrompts.map((x) => <li>{x}</li>)}
+        </ul>
+
+        <details class="details">
+          <summary class="details__summary">If you are not sure</summary>
+          <div class="details__body">
+            That is normal. I can propose a couple of directions and we pick
+            what fits. Over time, I will learn your preferences and keep things
+            consistent.
+          </div>
+        </details>
+      </section>
+
+      <section class="card" aria-label="Feedback and workflow">
+        <h3 class="card__title">Feedback and workflow</h3>
+        <ul class="list">
+          {feedbackTips.map((x) => <li>{x}</li>)}
+        </ul>
+
+        <details class="details">
+          <summary class="details__summary">Animation note</summary>
+          <div class="details__body">
+            I usually add animation toward the end unless you want to see it
+            earlier. If you prefer zero animation, just tell me and I will keep
+            everything static.
+          </div>
+        </details>
+      </section>
+    </div>
+
+    <section class="panel" aria-label="Good to know">
+      <h3 class="panel__title">Good to know</h3>
+      <ul class="list">
+        {goodToKnow.map((x) => <li>{x}</li>)}
+      </ul>
+      <details class="details">
+        <summary class="details__summary">Billing timing</summary>
+        <div class="details__body">
+          Invoices are sent after approval of delivered work. If a project
+          pauses, I may invoice for completed work to date so billing stays
+          clean and predictable. If the project resumes later, the remaining
+          scope is invoiced after final approval.
+        </div>
+      </details>
+    </section>
+
+    <section class="panel" aria-label="Aftercare and support">
+      <h3 class="panel__title">Aftercare</h3>
+      <ul class="list">
+        {aftercare.map((x) => <li>{x}</li>)}
+      </ul>
+    </section>
+
+    <section class="cta" aria-label="Call to action">
+      <h3 class="cta__title">{CTA_TITLE}</h3>
+      <p class="cta__text">{CTA_TEXT}</p>
+      <div class="cta__buttons">
+        <a class="btn" href={CTA_PRIMARY_HREF} target="_blank"
+          >{CTA_PRIMARY_LABEL}</a
+        >
+        <a class="btn btn--secondary" href={CTA_SECONDARY_HREF} target="_blank"
+          >{CTA_SECONDARY_LABEL}</a
+        >
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .onboarding {
+      --accent: #cf729c;
+
+      --ink: #2a2c27;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: clamp(28px, 5vw, 56px) 16px;
+      color: var(--text);
+    }
+
+    .onboarding--light {
+      background: unset;
+    }
+
+    .onboarding--dark {
+      background: #0f1216;
+
+      --ink: #f2f4f8;
+      --text: #e8eaf0;
+      --muted: #a8afbd;
+
+      --card: rgba(21, 26, 32, 0.92);
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .onboarding .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .onboarding__header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .onboarding__eyebrow {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .onboarding__title {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .onboarding__intro {
+      margin: 12px auto 0;
+      max-width: 860px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .onboarding__grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card,
+    .panel,
+    .cta {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .card__title,
+    .panel__title,
+    .cta__title {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .card__text {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .steps {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .step {
+      margin: 10px 0;
+    }
+    .step__title {
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .step__text {
+      margin-top: 4px;
+      color: var(--muted);
+    }
+
+    .list {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 18px;
+      margin: 10px 0;
+    }
+
+    .list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.22em;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .details {
+      margin-top: 12px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      padding-top: 10px;
+    }
+    .onboarding--dark .details {
+      border-top-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .details__summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-weight: 700;
+      list-style: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .details__summary::after {
+      content: "+";
+      float: right;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    details[open] .details__summary::after {
+      content: "–";
+    }
+
+    .details__body {
+      margin-top: 8px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .panel {
+      margin-top: 18px;
+    }
+
+    .cta {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .cta__text {
+      margin: 10px auto 0;
+      max-width: 900px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .cta__buttons {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .btn:hover {
+      filter: brightness(0.98);
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid rgba(207, 114, 156, 0.65);
+    }
+
+    .btn--secondary:hover {
+      border-color: rgba(207, 114, 156, 0.95);
+      filter: none;
+    }
+
+    @media (max-width: 980px) {
+      .onboarding__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</section>

@@ -1,0 +1,474 @@
+---
+/**
+ * Standalone pricing component (Flexbox-only)
+ * Usage: <PricingSection />
+ */
+
+type PricingCard = {
+  id: string
+  eyebrow?: string // "Hourly", "Essentials", "Partner"
+  price: string
+  unit: string
+  bullets: string[]
+  ctaLabel: string
+  ctaHref: string
+  featured?: boolean
+}
+
+const EMAIL = "ace@presentationace.com"
+
+const PROJECT_TITLE = "Project Basis"
+const RETAINER_TITLE = "Retainer Packages"
+
+const PROJECT_SUBTITLE = "On-demand. No commitment."
+const RETAINER_SUBTITLE =
+  "Limited availability. 3-month minimum. Custom options available."
+
+const mailto = (planLabel: string) => {
+  const subject = `Inquiry: ${planLabel}`
+
+  const body = [
+    "Hi Ace,",
+    "",
+    `I’m interested in: ${planLabel}`,
+    "",
+    "Context:",
+    "- Company / team:",
+    "- Deck type (exec update / QBR / sales / investor / etc.):",
+    "- Goal:",
+    "- Timeline / deadline:",
+    "- Rough slide count or scope:",
+    "",
+    "Materials:",
+    "- Link to current deck / docs:",
+    "- Brand guidelines (if any):",
+    "",
+    "Notes:",
+    "- Any preferences (style, animation, level of polish):",
+    "",
+    "Thanks!",
+  ].join("\n")
+
+  return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
+const projectLink = "/contact?intent=project&plan=hourly"
+const essentialsLink = "/contact?intent=retainer&plan=essentials"
+const partnerLink = "/contact?intent=retainer&plan=partner"
+
+const project: PricingCard = {
+  id: "project",
+  eyebrow: "Hourly",
+  price: "$110",
+  unit: "/hr",
+  bullets: [
+    "No monthly commitment. Engage on demand.",
+    "Turnaround: Subject to capacity (Typically 1–2 weeks).",
+    "To reserve time and start: 5 hours prepaid.",
+    "Rush (less than 3 business days): Available with 50% fee (preserves retainer priority).",
+    "Best for: First-time clients or occasional presentation design needs.",
+    "Send your project files and details to start. All files are treated as confidential.",
+    "Expect a reply in 1–2 business days.",
+    "If you upgrade to a retainer within 30 days of a project, I’ll credit 50% of the cost (up to $1000) to your first month. (One time use)",
+    "Retainer overages are billed at this rate.",
+  ],
+  ctaLabel: "Inquire",
+  ctaHref: projectLink,
+}
+
+const essentials: PricingCard = {
+  id: "essentials",
+  eyebrow: "Essentials",
+  price: "$2,500",
+  unit: "/mo",
+  bullets: [
+    "Reserved capacity: up to 25 hours / month.",
+    "Target turnaround: ~3 business days for small batches (~under 10 slides), capacity-dependent.",
+    "One invoice, billed monthly in advance. High priority. No rush fees. Save $250.",
+    "Best for: solo leaders with recurring decks (monthly reports, regular client pitches).",
+    "Flexible usage: Concept, Design, Animation, Consulting.",
+    "Active requests: 1 at a time.",
+    "Up to 10% of unused hours roll over to the next month, then expire.",
+    "Client Portal access: central hub for requests, assets, and files.",
+  ],
+  ctaLabel: "Inquire",
+  ctaHref: "/contact?intent=retainer&plan=essentials",
+  featured: true,
+}
+
+const partner: PricingCard = {
+  id: "partner",
+  eyebrow: "Partner",
+  price: "$4,500",
+  unit: "/mo",
+  bullets: [
+    "Reserved capacity: up to 50 hours / month.",
+    "Target turnaround: ~2 business days for small batches (~under 10 slides), capacity-dependent.",
+    "One invoice, billed monthly in advance. High priority. No rush fees. Save $1000.",
+    "Best for: busy teams or speakers with multiple key presentations each month.",
+    "Flexible usage: Concept, Design, Animation, Consulting.",
+    "Active requests: 2 at a time.",
+    "Up to 10% of unused hours roll over to the next month, then expire.",
+    "Client Portal access: central hub for requests, assets, and files.",
+  ],
+  ctaLabel: "Inquire",
+  ctaHref: "/contact?intent=retainer&plan=partner",
+}
+---
+
+<section class="pricing" aria-labelledby="pricing-title">
+  <div class="pricing__inner">
+    <h2 id="pricing-title" class="sr-only">Pricing</h2>
+
+    <div class="pricingFlex">
+      <!-- Bars -->
+      <div class="bar item item--col1 item--barProject">{PROJECT_TITLE}</div>
+      <div class="bar item item--col2 item--barRetainer">{RETAINER_TITLE}</div>
+
+      <!-- Taglines -->
+      <p class="subtitle item item--col1 item--subProject">
+        {PROJECT_SUBTITLE}
+      </p>
+      <p class="subtitle item item--col2 item--subRetainer">
+        {RETAINER_SUBTITLE}
+      </p>
+
+      <!-- Project card (its own flex item) -->
+      <div
+        class="cardsBlock item item--col1 item--cardsProject"
+        aria-label="Project basis card"
+      >
+        <article class="card" aria-label={PROJECT_TITLE}>
+          {
+            project.eyebrow && (
+              <div class="card__badge card__badge--neutral">
+                {project.eyebrow}
+              </div>
+            )
+          }
+
+          <div class="card__price">
+            <span class="card__amount">{project.price}</span>
+            <span class="card__unit">{project.unit}</span>
+          </div>
+
+          <hr class="card__rule" />
+
+          <ul class="card__list">
+            {project.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+
+          <a class="card__cta" href={project.ctaHref}>{project.ctaLabel}</a>
+        </article>
+      </div>
+
+      <!-- Retainer cards block (two cards inside) -->
+      <div
+        class="cardsBlock cardsBlock--retainers item item--col2 item--cardsRetainers"
+        aria-label="Retainer cards"
+      >
+        <article
+          class:list={["card", essentials.featured && "card--featured"]}
+          aria-label={essentials.eyebrow ?? "Essentials"}
+        >
+          {
+            essentials.eyebrow && (
+              <div class="card__badge">{essentials.eyebrow}</div>
+            )
+          }
+
+          <div class="card__price">
+            <span class="card__amount">{essentials.price}</span>
+            <span class="card__unit">{essentials.unit}</span>
+          </div>
+
+          <hr class="card__rule" />
+
+          <ul class="card__list">
+            {essentials.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+
+          <a class="card__cta" href={essentials.ctaHref}
+            >{essentials.ctaLabel}</a
+          >
+        </article>
+
+        <article class="card" aria-label={partner.eyebrow ?? "Partner"}>
+          {partner.eyebrow && <div class="card__badge">{partner.eyebrow}</div>}
+
+          <div class="card__price">
+            <span class="card__amount">{partner.price}</span>
+            <span class="card__unit">{partner.unit}</span>
+          </div>
+
+          <hr class="card__rule" />
+
+          <ul class="card__list">
+            {partner.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+
+          <a class="card__cta" href={partner.ctaHref}>{partner.ctaLabel}</a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing {
+    --ink: #2a2c27;
+    --accent: #cf729c;
+    --accent-ink: #ffffff;
+
+    --text: #2b2b2b;
+    --muted: #6e6e6e;
+
+    --card: #ffffff;
+    --border: rgba(0, 0, 0, 0.08);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --radius: 16px;
+
+    --gap: 24px;
+
+    --col1: calc(33.333333% - (2 * var(--gap) / 3));
+    --col2: calc(66.666667% - (var(--gap) / 3));
+
+    color: var(--text);
+    padding: clamp(32px, 5vw, 64px) 16px;
+  }
+
+  .pricing__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Main wrapper */
+  .pricingFlex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+
+    /* IMPORTANT: stretch blocks so card heights equalize on desktop */
+    align-items: stretch;
+  }
+
+  .item {
+    min-width: 0;
+  }
+  .item--col1 {
+    flex: 0 0 var(--col1);
+  }
+  .item--col2 {
+    flex: 0 0 var(--col2);
+  }
+
+  /* Bars/subtitles shouldn't stretch */
+  .bar,
+  .subtitle {
+    align-self: start;
+  }
+
+  .bar {
+    background: var(--ink);
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 10px;
+    letter-spacing: 0.2px;
+  }
+
+  .subtitle {
+    margin: -6px 0 6px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  /* Card blocks */
+  .cardsBlock {
+    display: flex;
+    align-items: stretch;
+  }
+
+  /* Retainer block has two cards side-by-side */
+  .cardsBlock--retainers {
+    gap: var(--gap);
+  }
+
+  .cardsBlock--retainers .card {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* Project block has one card that fills its column height */
+  .cardsBlock.item--col1 .card {
+    width: 100%;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    min-height: 460px;
+  }
+
+  .card__badge {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-weight: 700;
+    color: var(--accent);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .card__badge--neutral {
+    color: var(--muted);
+  }
+
+  .card__price {
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    line-height: 1.05;
+  }
+
+  .card__amount {
+    font-size: clamp(2.3rem, 3vw, 3rem);
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .card__unit {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-left: 6px;
+  }
+
+  .card__rule {
+    border: none;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.12);
+    margin: 10px 0 14px;
+  }
+
+  .card__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    flex: 1;
+  }
+
+  .card__list li {
+    position: relative;
+    padding-left: 18px;
+    margin: 15px 0;
+  }
+
+  .card__list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.25em;
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 1.05em;
+    line-height: 1;
+  }
+
+  .card__cta {
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .card__cta:hover {
+    filter: brightness(0.98);
+  }
+
+  .card--featured {
+    outline: 2px solid rgba(207, 114, 156, 0.35);
+    outline-offset: 2px;
+  }
+
+  /* ✅ MOBILE ORDER FIX */
+  @media (max-width: 980px) {
+    .item--col1,
+    .item--col2 {
+      flex: 0 0 100%;
+    }
+
+    /* Explicit order: Project bar -> Project subtitle -> Project card -> Retainer bar -> Retainer subtitle -> Retainer cards */
+    .item--barProject {
+      order: 1;
+    }
+    .item--subProject {
+      order: 2;
+    }
+    .item--cardsProject {
+      order: 3;
+    }
+
+    .item--barRetainer {
+      order: 4;
+    }
+    .item--subRetainer {
+      order: 5;
+    }
+    .item--cardsRetainers {
+      order: 6;
+    }
+
+    .card {
+      min-height: auto;
+    }
+
+    .cardsBlock--retainers {
+      flex-direction: column;
+    }
+
+    .card__badge {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: none;
+      margin: 0 auto 12px;
+      width: max-content;
+    }
+  }
+</style>

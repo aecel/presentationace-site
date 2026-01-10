@@ -1,0 +1,648 @@
+---
+/**
+ * ServicesTabs (standalone)
+ * Usage: <ServicesTabs />
+ *
+ * Put images in /public/services/...
+ */
+
+type Service = {
+  id: string
+  title: string
+  description: string
+  before: { src: string; alt: string }
+  after: { src: string; alt: string }
+  needs: string[]
+  note?: string
+}
+
+const services: Service[] = [
+  {
+    id: "done-for-you",
+    title: "Executive-Ready Upgrade (Done-For-You)",
+    description:
+      "The default option when you don’t want to manage details. You send the materials and goals, and I decide what to change. Structure, layout, visual hierarchy, charts, and motion. So the deck is clean, clear, and executive-ready.",
+    before: {
+      src: "/services/done-for-you-before.jpg",
+      alt: "Before: draft deck with mixed formatting and unclear hierarchy",
+    },
+    after: {
+      src: "/services/done-for-you-after.jpg",
+      alt: "After: executive-ready deck with clear hierarchy and consistent system",
+    },
+    needs: [
+      "The latest deck version (PPTX preferred) or your raw content",
+      "The goal of the deck (what decision or outcome you want)",
+      "Audience + context (board, exec review, investor, internal, keynote)",
+      "Any hard constraints (must-keep slides, legal wording, brand rules)",
+      "Deadline/date and how it will be used (live talk vs send-as-PDF)",
+    ],
+    note: "This is a great fit when you want the result to be excellent without spending time on creative direction. I’ll propose changes and iterate in small reviewable batches.",
+  },
+  {
+    id: "full",
+    title: "Full Presentation",
+    description:
+      "End-to-end creation from raw inputs. Includes story/structure, design, charts, and light animation where it improves clarity.",
+    before: { src: "/services/full-before.jpg", alt: "Before: rough draft" },
+    after: {
+      src: "/services/full-after.jpg",
+      alt: "After: executive-ready deck",
+    },
+    needs: [
+      "Goal + audience (what decision should this drive?)",
+      "Raw content (doc/notes/outline) + any existing deck",
+      "Brand guidelines or reference deck (if applicable)",
+      "Data sources (spreadsheets, dashboards, key metrics)",
+      "Deadline + meeting context (board, investor, internal, keynote)",
+    ],
+    note: "If you’re unsure what to send, start with a doc + any existing slides. I’ll guide the rest.",
+  },
+  {
+    id: "redesign",
+    title: "Redesign",
+    description:
+      "Visual overhaul while preserving your message. Great when content is solid but the deck doesn’t feel executive-ready yet.",
+    before: {
+      src: "/services/redesign-before.jpg",
+      alt: "Before: existing deck",
+    },
+    after: {
+      src: "/services/redesign-after.jpg",
+      alt: "After: redesigned deck",
+    },
+    needs: [
+      "Current deck file (PPTX preferred)",
+      "Brand guidelines or examples to match",
+      "Any must-keep elements (charts, screenshots, logos)",
+      "Where it will be presented (room, Zoom, projector, PDF send)",
+    ],
+  },
+  {
+    id: "rewrite",
+    title: "Rewrite (optional)",
+    description:
+      "Clarity-first rewriting and tightening. Only if you want it. Otherwise, your wording stays intact and I focus on structure/design.",
+    before: { src: "/services/rewrite-before.jpg", alt: "Before: wordy slide" },
+    after: {
+      src: "/services/rewrite-after.jpg",
+      alt: "After: simplified copy",
+    },
+    needs: [
+      "Permission to edit copy",
+      "Any non-negotiable terms/phrasing (legal, compliance, brand voice)",
+      "Audience familiarity level (expert vs general)",
+      "Key takeaways you want them to remember",
+    ],
+    note: "Rewrite can be light (tighten) or deep (restructure). You choose.",
+  },
+  {
+    id: "reformat",
+    title: "Reformat (match branding)",
+    description:
+      "Bring an existing deck into alignment with your brand system. Typography, spacing, colors, components, and layout consistency.",
+    before: {
+      src: "/services/reformat-before.jpg",
+      alt: "Before: off-brand deck",
+    },
+    after: { src: "/services/reformat-after.jpg", alt: "After: on-brand deck" },
+    needs: [
+      "Brand guidelines (fonts, colors, logo usage)",
+      "Existing templates (if you have them) or a reference deck",
+      "Any accessibility constraints (font sizes, contrast requirements)",
+    ],
+  },
+  {
+    id: "slide-structure",
+    title: "Slide Structure Optimization",
+    description:
+      "Improve clarity by restructuring slide density and flow. Break dense slides into 2–3 clean slides, or consolidate multiple slides into one executive summary slide. Ideal for making a deck easier to present and faster to understand.",
+    before: {
+      src: "/services/slide-structure-before.jpg",
+      alt: "Before: dense slide and/or scattered multi-slide content",
+    },
+    after: {
+      src: "/services/slide-structure-after.jpg",
+      alt: "After: clearer split slides or a consolidated executive summary slide",
+    },
+    needs: [
+      "The deck file (PPTX) or the specific slides to restructure",
+      "The top 1–2 takeaways per section (what must land)",
+      "Any constraints (slide count limit, time limit, required content)",
+      "A reference deck (optional) if you want the structure to match an internal standard",
+    ],
+    note: "I’ll preserve your meaning while improving scanning, hierarchy, and narrative flow. This often pairs well with a Redesign or Data Viz Cleanup pass.",
+  },
+  {
+    id: "animation",
+    title: "Animation",
+    description:
+      "Purposeful motion that guides attention and improves comprehension. (Light animation is included in most services.)",
+    before: {
+      src: "/services/animation-before.jpg",
+      alt: "Before: static slide",
+    },
+    after: {
+      src: "/services/animation-after.jpg",
+      alt: "After: animated build",
+    },
+    needs: [
+      "Deck file + which slides should animate (or your goal for the sequence)",
+      "Presentation context (live talk vs async send)",
+      "Preference: subtle executive motion vs more dynamic builds",
+      "Any brand motion rules (if applicable)",
+    ],
+    // note: "I optimize for clarity and speaker pacing. No flashy motion unless it serves the story.",
+  },
+  {
+    id: "dataviz",
+    title: "Data Visualization Cleanup",
+    description:
+      "Make KPI and chart slides decision-ready. Clear hierarchy, correct emphasis, and charts that tell the story in seconds.",
+    before: {
+      src: "/services/dataviz-before.jpg",
+      alt: "Before: cluttered KPI slide",
+    },
+    after: {
+      src: "/services/dataviz-after.jpg",
+      alt: "After: clarified KPI slide",
+    },
+    needs: [
+      "Source data (sheet/link) or the underlying numbers used for charts",
+      "The takeaway (what should the audience conclude?)",
+      "Metric definitions (if there’s ambiguity)",
+      "Any brand chart rules (colors, fonts, labels, decimals)",
+    ],
+    note: "If the data is sensitive, you can redact values and I’ll build the structure first.",
+  },
+  {
+    id: "design-direction-options",
+    title: "Design Direction Options",
+    description:
+      "For high-stakes slides where the right visual direction matters. I’ll propose multiple design approaches (e.g., Option A/B/C) so you can choose what fits best, then we refine the selected direction into a final, executive-ready slide (with additional iterations if needed).",
+    before: {
+      src: "/services/options-before.jpg",
+      alt: "Before: rough or ambiguous slide direction",
+    },
+    after: {
+      src: "/services/options-after.jpg",
+      alt: "After: selected design direction refined into an executive-ready slide",
+    },
+    needs: [
+      "The slide goal (what should the audience understand or decide?)",
+      "The slide content (text, data, screenshots) or the source material behind it",
+      "Your context and audience (board, exec review, investor, internal)",
+      "Any constraints (brand rules, must-include elements, time/slide count limits)",
+      "What you like/dislike (or 1–2 reference slides) to calibrate taste quickly",
+    ],
+    note: "Best for flagship slides (opening, key narrative turning points, pricing/value, roadmap, KPI summary). I can deliver options as quick comps first, then polish the chosen direction.",
+  },
+  //   {
+  //     id: "pitch-sprint",
+  //     title: "Pitch Polish Sprint",
+  //     description:
+  //       "A focused, fast iteration cycle before a high-stakes meeting. Tighten narrative flow, sharpen visuals, and improve pacing.",
+  //     before: {
+  //       src: "/services/pitch-before.jpg",
+  //       alt: "Before: rough pitch slides",
+  //     },
+  //     after: {
+  //       src: "/services/pitch-after.jpg",
+  //       alt: "After: polished pitch slides",
+  //     },
+  //     needs: [
+  //       "Current deck version (PPTX) and the deadline/date",
+  //       "Pitch type (investor, sales, partner, internal)",
+  //       "Primary objections or questions you expect",
+  //       "Priority slides (the 5–10 that matter most)",
+  //     ],
+  //     note: "Best used 2–5 business days before the meeting so we have room for 1–2 review loops.",
+  //   },
+  {
+    id: "consulting",
+    title: "Consulting",
+    description:
+      "Strategy and problem-solving: structure, narrative, slide system guidance, and improving how your team produces decks.",
+    before: {
+      src: "/services/consulting-before.jpg",
+      alt: "Before: inconsistent process",
+    },
+    after: {
+      src: "/services/consulting-after.jpg",
+      alt: "After: clearer structure/system",
+    },
+    needs: [
+      "Your current deck(s) or examples",
+      "Constraints (time, team skill, tools, review workflow)",
+      "What “good” looks like internally (examples you admire)",
+      "Recurring presentation types you produce",
+    ],
+  },
+  {
+    id: "illustration",
+    title: "Custom Illustration",
+    description:
+      "Clean, on-brand visuals for concepts that screenshots or stock icons can’t express. Systems, processes, architectures, and flows.",
+    before: {
+      src: "/services/illustration-before.jpg",
+      alt: "Before: complex concept",
+    },
+    after: {
+      src: "/services/illustration-after.jpg",
+      alt: "After: custom illustration",
+    },
+    needs: [
+      "A rough sketch (even ugly) or written explanation",
+      "Any terminology/labels that must be used",
+      "Style reference (minimal, technical, playful, etc.)",
+      "Where it will live (slides, PDF, web, internal docs)",
+    ],
+  },
+  {
+    id: "template-system",
+    title: "Template & Slide System",
+    description:
+      "A reusable slide library so your team can move faster while staying consistent and on-brand.",
+    before: {
+      src: "/services/template-before.jpg",
+      alt: "Before: inconsistent decks",
+    },
+    after: {
+      src: "/services/template-after.jpg",
+      alt: "After: consistent slide system",
+    },
+    needs: [
+      "Brand guidelines + fonts (or closest equivalents)",
+      "3–5 decks that represent real-world use cases",
+      "Common slide types you repeat (updates, KPIs, roadmap, etc.)",
+      "Any internal rules (logo placement, confidentiality marks, footers)",
+    ],
+  },
+  {
+    id: "presentation-engineering",
+    title: "Presentation Engineering",
+    description:
+      "Technical and interactive PowerPoint builds for special use cases. Clickable navigation (TOC, home buttons), branching flows, interactive demos, game mechanics, and embedding media (including AI-generated video). Built to run reliably during live presenting.",
+    before: {
+      src: "/services/engineering-before.jpg",
+      alt: "Before: static deck without navigation or interactive features",
+    },
+    after: {
+      src: "/services/engineering-after.jpg",
+      alt: "After: interactive deck with clickable table of contents and navigation controls",
+    },
+    needs: [
+      "Your use case + how it will be run (live presenter, kiosk, shared PDF, Teams/Zoom, etc.)",
+      "Target platform details (PowerPoint desktop vs web, Windows vs Mac, screen resolution)",
+      "Deck file (PPTX) and any brand/template constraints",
+      "A map of desired interactions (what should be clickable and where it should go)",
+      "All media assets (videos, audio, images) + any licensing/usage notes",
+      "If AI-generated videos are needed: your script/brief + preferred style + duration + any brand constraints",
+    ],
+    // note: "I’ll propose an interaction map and test the build for reliability. Some interactive features differ between PowerPoint desktop, PowerPoint for Mac, and PowerPoint web. I'll confirm compatibility up front.",
+  },
+]
+---
+
+<section
+  class="servicesTabs"
+  data-services-tabs
+  aria-labelledby="servicesTabs-title"
+>
+  <div class="shell">
+    <header class="servicesTabs__header">
+      <p class="servicesTabs__eyebrow">Services</p>
+      <h2 id="servicesTabs-title" class="servicesTabs__title">
+        What I can do for your presentations
+      </h2>
+      <p class="servicesTabs__intro">
+        Pick a service to see what it includes and what I typically need. These
+        are examples, not rigid packages. Most engagements combine a few of
+        these.
+      </p>
+    </header>
+
+    <div class="servicesTabs__tabs" role="tablist" aria-label="Services">
+      {
+        services.map((s, i) => (
+          <button
+            type="button"
+            class:list={["servicesTabs__tab", i === 0 && "is-active"]}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+            aria-controls={`panel-${s.id}`}
+            data-tab={s.id}
+          >
+            {s.title}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="servicesTabs__panels">
+      {
+        services.map((s, i) => (
+          <article
+            class="servicePanel"
+            id={`panel-${s.id}`}
+            role="tabpanel"
+            data-panel={s.id}
+            hidden={i === 0 ? undefined : true}
+          >
+            <header class="servicePanel__header">
+              <h3 class="servicePanel__title">{s.title}</h3>
+              <p class="servicePanel__desc">{s.description}</p>
+            </header>
+
+            {/* <div
+              class="servicePanel__media"
+              aria-label={`${s.title}: before and after`}
+            >
+              <figure class="servicePanel__shot">
+                <img
+                  class="servicePanel__img"
+                  src={s.before.src}
+                  alt={s.before.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="servicePanel__cap">Before</figcaption>
+              </figure>
+
+              <div class="servicePanel__arrow" aria-hidden="true">
+                <span class="servicePanel__arrowIcon">→</span>
+              </div>
+
+              <figure class="servicePanel__shot">
+                <img
+                  class="servicePanel__img"
+                  src={s.after.src}
+                  alt={s.after.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="servicePanel__cap">After</figcaption>
+              </figure>
+            </div> */}
+
+            <div class="servicePanel__body">
+              <h4 class="servicePanel__needTitle">What I need from you</h4>
+              <ul class="servicePanel__list">
+                {s.needs.map((n) => (
+                  <li>{n}</li>
+                ))}
+              </ul>
+
+              {s.note && <p class="servicePanel__note">{s.note}</p>}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <script src="/js/services-tabs.js" type="module"></script>
+
+  <style>
+    /* Local “design system” (matches your pricing colors) */
+    .servicesTabs {
+      --ink: #2a2c27;
+      --accent: #cf729c;
+      --accent-ink: #ffffff;
+
+      --bg: #ffffff;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: clamp(32px, 5vw, 64px) 16px;
+
+      color: var(--text);
+    }
+
+    /* IMPORTANT: make hidden always actually hidden */
+    .servicesTabs [hidden] {
+      display: none !important;
+    }
+
+    .servicesTabs .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .servicesTabs__header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .servicesTabs__eyebrow {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .servicesTabs__title {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .servicesTabs__intro {
+      margin: 12px auto 0;
+      max-width: 860px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* Tabs: wrap on desktop */
+    .servicesTabs__tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 18px auto 18px;
+      max-width: 1100px;
+    }
+
+    .servicesTabs__tab {
+      appearance: none;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: #fff;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 10px 14px;
+      /* font-weight: 530; */
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+      white-space: nowrap;
+    }
+
+    .servicesTabs__tab:hover {
+      border-color: rgba(207, 114, 156, 0.55);
+    }
+
+    .servicesTabs__tab.is-active {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: rgba(0, 0, 0, 0.06);
+    }
+
+    /* Mobile: horizontally scrollable chips */
+    @media (max-width: 900px) {
+      .servicesTabs__tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 6px 4px 12px;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+      }
+      .servicesTabs__tab {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+      }
+    }
+
+    /* Panel card */
+    .servicePanel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 22px 18px;
+    }
+
+    .servicePanel__title {
+      margin: 0;
+      /* font-weight: 900; */
+      color: var(--ink);
+      font-size: 1.15rem;
+    }
+
+    .servicePanel__desc {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Before/After */
+    .servicePanel__media {
+      margin-top: 14px;
+      display: grid;
+
+      display: none;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .servicePanel__shot {
+      margin: 0;
+      text-align: center;
+    }
+
+    .servicePanel__img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      display: block;
+    }
+
+    .servicePanel__cap {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .servicePanel__arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: #fff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .servicePanel__arrowIcon {
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    /* Needs list */
+    .servicePanel__body {
+      margin-top: 14px;
+    }
+
+    .servicePanel__needTitle {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      /* font-weight: 900; */
+      color: var(--ink);
+    }
+
+    .servicePanel__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .servicePanel__list li {
+      position: relative;
+      padding-left: 18px;
+      margin: 12px 0;
+    }
+
+    .servicePanel__list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.25em;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 1.05em;
+      line-height: 1;
+    }
+
+    .servicePanel__note {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.92rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding-top: 10px;
+    }
+
+    @media (max-width: 980px) {
+      .servicePanel__media {
+        grid-template-columns: 1fr;
+      }
+      .servicePanel__arrow {
+        margin: 6px auto;
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</section>

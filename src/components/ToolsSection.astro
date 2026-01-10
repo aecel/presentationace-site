@@ -1,0 +1,260 @@
+---
+/**
+ * ToolsSection (About page)
+ * Usage: <ToolsSection />
+ *
+ * Toggle theme with class on section:
+ *  - "toolsSection toolsSection--light" (inherits page bg)
+ *  - "toolsSection toolsSection--dark"  (sets dark bg)
+ */
+
+const SECTION_ID = "tools"
+
+const primaryTools = [
+  { name: "PowerPoint", src: "/tools/powerpoint.svg" },
+  { name: "Adobe Illustrator", src: "/tools/illustrator.svg" },
+]
+
+const otherTools = [
+  { name: "Keynote", src: "/tools/keynote.svg" },
+  { name: "Google Slides", src: "/tools/google-slides.svg" },
+  { name: "Prezi", src: "/tools/prezi.svg" },
+//   { name: "Affinity", src: "/tools/affinity.svg" },
+]
+
+const TITLE = "Tools and workflow"
+const INTRO =
+  "PowerPoint and Adobe Illustrator are my primary tools. I can also work in other presentation and design tools when needed, and I’m comfortable adapting to your team’s workflow."
+const OPTIONAL_LINE =
+  "Optional: AI-assisted visuals or video can be included when appropriate and explicitly approved."
+---
+
+<section
+  id={SECTION_ID}
+  class="toolsSection toolsSection--dark"
+  aria-labelledby="tools-title"
+>
+  <div class="shell">
+    <header class="toolsSection__header">
+      <h2 id="tools-title" class="toolsSection__title">{TITLE}</h2>
+      <p class="toolsSection__intro">{INTRO}</p>
+    </header>
+
+    <div class="toolsSection__grid">
+      <div class="toolsBlock" aria-label="Primary tools">
+        <h3 class="toolsBlock__title">Primary</h3>
+        <div class="toolsRow" role="list" aria-label="Primary tools list">
+          {
+            primaryTools.map((t) => (
+              <div
+                class="tool tool--primary"
+                role="listitem"
+                title={t.name}
+                aria-label={t.name}
+              >
+                <img
+                  class="tool__img"
+                  src={t.src}
+                  alt={t.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="tool__label">{t.name}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="toolsBlock" aria-label="Other tools">
+        <h3 class="toolsBlock__title">Also compatible with</h3>
+        <div class="toolsRow" role="list" aria-label="Other tools list">
+          {
+            otherTools.map((t) => (
+              <div
+                class="tool"
+                role="listitem"
+                title={t.name}
+                aria-label={t.name}
+              >
+                <img
+                  class="tool__img"
+                  src={t.src}
+                  alt={t.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="tool__label">{t.name}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <p class="toolsSection__optional">{OPTIONAL_LINE}</p>
+  </div>
+
+  <style>
+    .toolsSection {
+      --accent: #cf729c;
+
+      --ink: #2a2c27;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: clamp(22px, 4vw, 40px) 16px;
+      color: var(--text);
+    }
+
+    .toolsSection--light {
+      background: unset;
+    }
+
+    .toolsSection--dark {
+      background: #0f1216;
+
+      --ink: #f2f4f8;
+      --text: #e8eaf0;
+      --muted: #a8afbd;
+
+      --card: rgba(21, 26, 32, 0.92);
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .toolsSection .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .toolsSection__header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .toolsSection__title {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .toolsSection__intro {
+      margin: 10px auto 0;
+      max-width: 860px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .toolsSection__grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch; /* <-- key change */
+    }
+
+    .toolsBlock {
+      background: var(--card);
+      /* border: 1px solid var(--border); */
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 16px 14px;
+
+      height: 100%; /* <-- key change */
+      display: flex; /* optional but recommended */
+      flex-direction: column; /* optional but recommended */
+    }
+
+    .toolsBlock__title {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    .toolsRow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-start;
+
+      flex: 1; /* <-- helps both cards visually match if content differs */
+      align-content: flex-start; /* keeps tiles at top */
+    }
+    .tool {
+      width: 150px;
+      min-height: 86px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+      padding: 12px;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .toolsSection--dark .tool {
+      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(15, 18, 22, 0.35);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    /* .tool--primary {
+      outline: 2px solid rgba(207, 114, 156, 0.28);
+      outline-offset: 2px;
+    } */
+
+    .tool__img {
+      max-width: 100%;
+      max-height: 34px;
+      width: auto;
+      height: auto;
+      display: block;
+      /* filter: grayscale(1) contrast(1.05); */
+      opacity: 0.92;
+    }
+
+    .tool__label {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .toolsSection__optional {
+      margin: 14px auto 0;
+      text-align: center;
+      color: var(--muted);
+      max-width: 860px;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .toolsSection__grid {
+        grid-template-columns: 1fr;
+      }
+      .tool {
+        width: clamp(160px, 48%, 220px);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .tool {
+        width: 100%;
+      }
+    }
+  </style>
+</section>

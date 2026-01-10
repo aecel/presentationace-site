@@ -1,0 +1,49 @@
+---
+import "../styles/blog.css"
+
+const SECTION_ID = "blog"
+
+const EYEBROW = "Blog"
+const TITLE = "Notes on presentation design"
+const INTRO =
+  "Short, practical posts on slide design, story structure, and presenting with clarity. First articles are on the way."
+
+const CARD_TITLE = "Coming soon"
+const CARD_TEXT =
+  "I’m writing a set of posts covering deck strategy, slide design systems, animation best practices, and how to work faster in PowerPoint."
+const CARD_FOOTER =
+  "Want the first posts? Send me an email and I’ll notify you."
+const EMAIL = "ace@presentationace.com"
+---
+
+<section id={SECTION_ID} class="blog" aria-labelledby="blog-title">
+  <div class="shell">
+    <header class="blog__header">
+      <p class="blog__eyebrow">{EYEBROW}</p>
+      <h2 id="blog-title" class="blog__title">{TITLE}</h2>
+      <p class="blog__intro">{INTRO}</p>
+    </header>
+
+    <div class="blog__grid">
+      <article class="blog-card" aria-label="Blog coming soon">
+        <div class="blog-card__badge">Coming soon</div>
+
+        <h3 class="blog-card__title">{CARD_TITLE}</h3>
+        <p class="blog-card__text">{CARD_TEXT}</p>
+
+        <div class="blog-card__divider" aria-hidden="true"></div>
+
+        <p class="blog-card__footer">
+          {CARD_FOOTER}
+          <br />
+          <a
+            class="blog-card__link"
+            href={`mailto:${EMAIL}?subject=Blog%20updates&body=Hi%20Ace%2C%0A%0APlease%20notify%20me%20when%20your%20blog%20posts%20are%20live.%0A`}
+          >
+            {EMAIL}
+          </a>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>

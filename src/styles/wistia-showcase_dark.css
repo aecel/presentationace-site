@@ -1,0 +1,269 @@
+:global(.wistiaModal__frame .wistia_responsive_padding) {
+  position: relative;
+  padding: 56.25% 0 0 0; /* 16:9 */
+  width: 100%;
+  height: 0;
+}
+
+:global(.wistiaModal__frame .wistia_responsive_wrapper) {
+  position: absolute;
+  inset: 0;
+}
+
+:global(.wistiaModal__frame iframe.wistia_embed) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.wistiaShowcase {
+  --accent: #cf729c;
+  --accent-ink: #ffffff;
+
+  --bg: #0f1216;
+  --card: #151a20;
+
+  --ink: #f2f4f8;
+  --text: #e8eaf0;
+  --muted: #a8afbd;
+
+  --border: rgba(255, 255, 255, 0.1);
+  --divider: rgba(255, 255, 255, 0.08);
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  --radius: 16px;
+
+  padding: clamp(32px, 5vw, 64px) 16px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.wistiaShowcase .shell {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.wistiaShowcase__header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.wistiaShowcase__eyebrow {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.wistiaShowcase__title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.wistiaShowcase__intro {
+  margin: 12px auto 0;
+  max-width: 860px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.wistiaShowcase__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+  margin-top: 18px;
+}
+
+.wistiaCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.wistiaCard__button {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.wistiaCard__thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.02);
+}
+
+.wistiaCard__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  font-size: 42px;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.55)
+  );
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.wistiaCard__button:hover .wistiaCard__play {
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.5)
+  );
+  transform: scale(1.02);
+}
+
+.wistiaCard__title {
+  margin: 2px 0 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.wistiaCard__desc {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.wistiaCard__link {
+  color: var(--accent);
+  /* font-weight: 800; */
+  text-decoration: none;
+}
+
+.wistiaCard__link:hover {
+  text-decoration: underline;
+}
+
+/* Modal */
+.wistiaModal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+}
+
+.wistiaModal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.wistiaModal__dialog {
+  position: relative;
+  width: min(980px, calc(100vw - 24px));
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+  z-index: 1;
+}
+
+.wistiaModal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.wistiaModal__frameWrap {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--divider);
+  background: #0b0d10;
+}
+
+/* .wistiaModal__frame {
+      aspect-ratio: 16 / 9;
+    } */
+
+.wistiaModal__frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.wistiaModal__note {
+  margin: 10px 2px 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.wistiaModal__fallback {
+  color: var(--accent);
+  font-weight: 900;
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.wistiaModal__fallback:hover {
+  text-decoration: underline;
+}
+
+.wistiaModal__frame .wistia_responsive_padding {
+  position: relative;
+  padding: 56.25% 0 0 0; /* 16:9 */
+  width: 100%;
+  height: 0;
+}
+
+.wistiaModal__frame .wistia_responsive_wrapper {
+  position: absolute;
+  inset: 0;
+}
+
+.wistiaModal__frame .wistia_embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 980px) {
+  .wistiaShowcase__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wistiaShowcase [hidden] {
+  display: none !important;
+}

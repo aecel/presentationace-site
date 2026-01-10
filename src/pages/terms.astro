@@ -1,0 +1,285 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+const LAST_UPDATED = "January 2026" // update as needed
+const EMAIL = "ace@presentationace.com"
+---
+
+<BaseLayout
+  title="Terms | Presentation Ace"
+  description="Summary of standard working terms for Presentation Ace."
+>
+  <main class="terms">
+    <div class="shell">
+      <header class="terms__header">
+        <p class="terms__eyebrow">Terms</p>
+        <h1 class="terms__title">Working terms summary</h1>
+        <p class="terms__intro">
+          This page is a plain-language summary of how I typically work on
+          project-based and retainer engagements. Final terms are provided in
+          the proposal or agreement and may be adjusted by mutual agreement.
+        </p>
+        <p class="terms__updated">
+          <strong>Last updated:</strong>
+          {LAST_UPDATED}
+        </p>
+      </header>
+
+      <section class="card" aria-label="Quick summary">
+        <h2 class="card__title">Quick summary</h2>
+        <ul class="list">
+          <li>
+            <strong>Confidential by default.</strong> NDA-friendly if needed.
+          </li>
+          <li>
+            <strong>Project-based work:</strong> starts with a 5-hour prepaid kickoff
+            block.
+          </li>
+          <li>
+            <strong>Retainers:</strong> billed monthly in advance, include reserved
+            capacity and priority turnaround.
+          </li>
+          <li>
+            <strong>Rush work:</strong> may be billed at a +50% premium if needed
+            in under ~3 business days or outside regular hours.
+          </li>
+          <li>
+            <strong>Deliverables:</strong> final PPTX plus select assets as agreed
+            (not every working file by default).
+          </li>
+          <li>
+            <strong>Paused projects:</strong> if feedback/inputs are not received
+            for 14 days, I may invoice for work completed to date.
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" aria-label="Project-based terms">
+        <h2 class="card__title">Project-based (hourly) terms</h2>
+        <ul class="list">
+          <li>
+            <strong>Hourly billing:</strong> time is tracked and billed based on time
+            spent.
+          </li>
+          <li>
+            <strong>Kickoff:</strong> projects start with a <strong
+              >5-hour prepaid block</strong
+            > to reserve time and begin work. This is credited toward the final invoice.
+          </li>
+          <li>
+            <strong>Invoicing:</strong> after kickoff, invoices are typically sent
+            <strong>upon approval</strong> of delivered work.
+          </li>
+          <li>
+            <strong>Paused work:</strong> if a project pauses due to missing feedback/inputs
+            for <strong>14 calendar days</strong>, I may invoice for work
+            completed to date. Work resumes after confirmation and payment of
+            any outstanding invoices.
+          </li>
+          <li>
+            <strong>Turnaround:</strong> estimated turnaround depends on scope and
+            capacity (I’ll provide an ETA once I review materials).
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" aria-label="Retainer terms">
+        <h2 class="card__title">Monthly retainer terms</h2>
+        <ul class="list">
+          <li>
+            <strong>Billed monthly in advance</strong> for reserved capacity.
+          </li>
+          <li>
+            <strong>Priority access:</strong> retainer clients are scheduled ahead
+            of project-based work.
+          </li>
+          <li>
+            <strong>No rush fees</strong> for updates and iterations within plan scope.
+          </li>
+          <li>
+            <strong>Flexible usage:</strong> hours can be used for concept, design,
+            animation, and presentation consulting.
+          </li>
+          <li>
+            <strong>Active requests:</strong> your plan may limit how many requests
+            can be active at once to keep delivery fast.
+          </li>
+          <li>
+            <strong>Rollover:</strong> up to <strong>10%</strong> of unused hours
+            may roll over to the next month, then expire.
+          </li>
+          <li>
+            <strong>Overage:</strong> excess hours are billed at the standard hourly
+            rate unless otherwise agreed.
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" aria-label="Rush and turnaround">
+        <h2 class="card__title">Rush work and turnaround</h2>
+        <p class="text">
+          I do my best to accommodate urgent needs, but rush work depends on
+          capacity and existing commitments. If a request qualifies as rush, I
+          will confirm before starting.
+        </p>
+        <ul class="list">
+          <li>
+            <strong>Rush premium:</strong> +50% may apply for deadlines under ~3 business
+            days or work outside regular hours.
+          </li>
+          <li>
+            <strong>Retainer priority:</strong> retainers receive first priority on
+            the calendar.
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" aria-label="Files and ownership">
+        <h2 class="card__title">Files and assets</h2>
+        <ul class="list">
+          <li>
+            <strong>Deliverables:</strong> final PPTX plus select assets as agreed.
+          </li>
+          <li>
+            <strong>Editable assets:</strong> when I create custom icons or flat illustrations,
+            I build them as editable vectors whenever possible.
+          </li>
+          <li>
+            <strong>Third-party assets:</strong> any fonts, photos, icons, or other
+            licensed assets remain subject to their licenses.
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" aria-label="Confidentiality">
+        <h2 class="card__title">Confidentiality</h2>
+        <p class="text">
+          Confidentiality is standard. I treat your decks, metrics, drafts, and
+          internal materials as private. I’m happy to sign an NDA if needed.
+        </p>
+      </section>
+
+      <section class="card" aria-label="Questions">
+        <h2 class="card__title">Questions</h2>
+        <p class="text">
+          If anything here is unclear, send a quick note and I’ll clarify.
+          Email:
+          <a class="link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <style>
+    .terms {
+      --ink: #2a2c27;
+      --accent: #cf729c;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: 42px 16px;
+      color: var(--text);
+    }
+
+    .terms .shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .terms__header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .terms__eyebrow {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .terms__title {
+      margin: 0;
+      font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .terms__intro {
+      margin: 12px auto 0;
+      max-width: 860px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .terms__updated {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .card__title {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .text {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .list {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 18px;
+      margin: 10px 0;
+    }
+
+    .list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.22em;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .link {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</BaseLayout>

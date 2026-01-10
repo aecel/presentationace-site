@@ -1,0 +1,126 @@
+.included {
+  --accent: #cf729c;
+  --accent-ink: #ffffff;
+
+  /* Dark theme tokens */
+  --bg: #0f1216;
+  --card: #151a20;
+  --ink: #f2f4f8; /* headings */
+  --text: #e8eaf0; /* body text */
+  --muted: #a8afbd; /* secondary text */
+
+  --border: rgba(255, 255, 255, 0.1);
+  --divider: rgba(255, 255, 255, 0.08);
+
+  /* Shadows on dark should be subtle */
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+
+  --radius: 16px;
+
+  padding: clamp(32px, 5vw, 64px) 16px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.included .shell {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.included__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.included__title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.included__intro {
+  margin: 12px auto 0;
+  max-width: 860px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* Main card */
+.included__card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 18px 6px;
+}
+
+/* List items */
+.included__item {
+  position: relative;
+  padding: 14px 14px 14px 34px;
+  border-top: 1px solid var(--divider);
+}
+
+.included__item:hover {
+  background: rgba(207, 114, 156, 0.04);
+}
+
+.included__item:first-child {
+  border-top: none;
+}
+
+.included__item::before {
+  content: "✓";
+  position: absolute;
+  left: 12px;
+  top: 18px;
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.included__itemTitle {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.included__itemDesc {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Optional footnote */
+.included__footnote {
+  margin: 14px auto 0;
+  text-align: center;
+  color: var(--muted);
+  max-width: 860px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Responsive: two columns on desktop */
+@media (min-width: 980px) {
+  .included__card {
+    column-count: 2;
+    column-gap: 24px;
+  }
+
+  .included__item {
+    break-inside: avoid;
+  }
+}
+
+@media (max-width: 520px) {
+  .included__card {
+    padding: 16px 14px 6px;
+  }
+
+  .included__item {
+    padding: 14px 12px 14px 32px;
+  }
+}

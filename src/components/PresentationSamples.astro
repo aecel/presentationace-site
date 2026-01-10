@@ -1,0 +1,433 @@
+---
+/**
+ * PresentationSamples (light mode, flex-wrap + modal slideshow)
+ * Usage: <PresentationSamples />
+ *
+ * Put images in /public/samples/...
+ */
+
+type Sample = {
+  thumbSrc: string
+  fullSrc: string
+  alt: string
+  title?: string
+}
+
+const SECTION_ID = "samples"
+
+const samples: Sample[] = [
+  {
+    thumbSrc: "/samples/thumbs/Slide01.webp",
+    fullSrc: "/samples/full/Slide01.webp",
+    alt: "Presentation sample 01",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide02.webp",
+    fullSrc: "/samples/full/Slide02.webp",
+    alt: "Presentation sample 02",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide03.webp",
+    fullSrc: "/samples/full/Slide03.webp",
+    alt: "Presentation sample 03",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide04.webp",
+    fullSrc: "/samples/full/Slide04.webp",
+    alt: "Presentation sample 04",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide05.webp",
+    fullSrc: "/samples/full/Slide05.webp",
+    alt: "Presentation sample 05",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide06.webp",
+    fullSrc: "/samples/full/Slide06.webp",
+    alt: "Presentation sample 06",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide07.webp",
+    fullSrc: "/samples/full/Slide07.webp",
+    alt: "Presentation sample 07",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide08.webp",
+    fullSrc: "/samples/full/Slide08.webp",
+    alt: "Presentation sample 08",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide09.webp",
+    fullSrc: "/samples/full/Slide09.webp",
+    alt: "Presentation sample 09",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide10.webp",
+    fullSrc: "/samples/full/Slide10.webp",
+    alt: "Presentation sample 10",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide11.webp",
+    fullSrc: "/samples/full/Slide11.webp",
+    alt: "Presentation sample 11",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide12.webp",
+    fullSrc: "/samples/full/Slide12.webp",
+    alt: "Presentation sample 12",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide13.webp",
+    fullSrc: "/samples/full/Slide13.webp",
+    alt: "Presentation sample 13",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide14.webp",
+    fullSrc: "/samples/full/Slide14.webp",
+    alt: "Presentation sample 14",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide15.webp",
+    fullSrc: "/samples/full/Slide15.webp",
+    alt: "Presentation sample 15",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide16.webp",
+    fullSrc: "/samples/full/Slide16.webp",
+    alt: "Presentation sample 16",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide17.webp",
+    fullSrc: "/samples/full/Slide17.webp",
+    alt: "Presentation sample 17",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide18.webp",
+    fullSrc: "/samples/full/Slide18.webp",
+    alt: "Presentation sample 18",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide19.webp",
+    fullSrc: "/samples/full/Slide19.webp",
+    alt: "Presentation sample 19",
+  },
+  {
+    thumbSrc: "/samples/thumbs/Slide20.webp",
+    fullSrc: "/samples/full/Slide20.webp",
+    alt: "Presentation sample 20",
+  },
+]
+---
+
+<section
+  id={SECTION_ID}
+  class="presentationSamples"
+  data-samples
+  aria-labelledby="samples-title"
+>
+  <div class="shell">
+    <header class="presentationSamples__header">
+      <!-- <h2 id="samples-title" class="presentationSamples__titleBar">
+        Presentation Samples
+      </h2>
+      <p class="presentationSamples__sub">
+        Click to enlarge and go to slideshow mode
+      </p> -->
+      <p class="presentationSamples__eyebrow">Portfolio</p>
+      <h2 class="presentationSamples__title">Presentation Samples</h2>
+      <p class="presentationSamples__intro">
+        Samples of my work. Click to enlarge and go to slideshow mode.
+      </p>
+    </header>
+
+    <div class="presentationSamples__grid" aria-label="Presentation thumbnails">
+      {
+        samples.map((s, i) => (
+          <button
+            type="button"
+            class="presentationSamples__thumbBtn"
+            data-sample-thumb
+            data-index={i}
+            data-thumb={s.thumbSrc}
+            data-full={s.fullSrc}
+            data-alt={s.alt}
+            aria-label={`Open sample ${i + 1}`}
+          >
+            <img
+              class="presentationSamples__thumb"
+              src={s.thumbSrc}
+              alt={s.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="samplesModal" data-samples-modal hidden aria-hidden="true">
+    <div class="samplesModal__backdrop" data-samples-close></div>
+
+    <div
+      class="samplesModal__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Slideshow"
+    >
+      <button
+        class="samplesModal__close"
+        type="button"
+        data-samples-close
+        aria-label="Close">✕</button
+      >
+
+      <button
+        class="samplesModal__nav samplesModal__nav--prev"
+        type="button"
+        data-samples-prev
+        aria-label="Previous"
+      >
+        ‹
+      </button>
+
+      <figure class="samplesModal__figure">
+        <img class="samplesModal__img" data-samples-img alt="" />
+        <figcaption class="samplesModal__caption" data-samples-caption>
+        </figcaption>
+      </figure>
+
+      <button
+        class="samplesModal__nav samplesModal__nav--next"
+        type="button"
+        data-samples-next
+        aria-label="Next"
+      >
+        ›
+      </button>
+    </div>
+  </div>
+
+  <script src="/js/presentation-samples.js" type="module"></script>
+
+  <style>
+    .presentationSamples {
+      --ink: #2a2c27;
+      --accent: #cf729c;
+
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
+      --radius: 14px;
+
+      padding: clamp(28px, 5vw, 56px) 16px;
+      color: var(--text);
+    }
+
+    .presentationSamples .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .presentationSamples__header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .presentationSamples__eyebrow {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .presentationSamples__title {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .presentationSamples__intro {
+      margin: 12px auto 0;
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .presentationSamples__titleBar {
+      margin: 0 auto;
+      display: inline-block;
+      background: var(--ink);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      letter-spacing: 0.2px;
+    }
+
+    .presentationSamples__sub {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Flex-wrap thumbnail wall */
+    .presentationSamples__grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .presentationSamples__thumbBtn {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      outline: 1px solid rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+
+      /* tile sizing */
+      flex: 0 1 clamp(160px, 18vw, 230px);
+    }
+
+    .presentationSamples__thumbBtn:focus-visible {
+      outline: 3px solid rgba(207, 114, 156, 0.45);
+      outline-offset: 2px;
+    }
+
+    .presentationSamples__thumb {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #fff;
+      transition: transform 160ms ease;
+    }
+
+    .presentationSamples__thumbBtn:hover .presentationSamples__thumb {
+      transform: scale(1.02);
+    }
+
+    /* Modal */
+    .samplesModal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+    }
+
+    .samplesModal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .samplesModal__dialog {
+      position: relative;
+      width: min(1100px, calc(100vw - 24px));
+      max-height: calc(100vh - 24px);
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 18px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+      padding: 14px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .samplesModal__close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.95);
+      color: #2a2c27;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .samplesModal__nav {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.95);
+      cursor: pointer;
+      font-size: 34px;
+      line-height: 1;
+      color: #2a2c27;
+      display: grid;
+      place-items: center;
+      user-select: none;
+    }
+
+    .samplesModal__figure {
+      margin: 0;
+      width: 100%;
+      display: grid;
+      gap: 10px;
+    }
+
+    .samplesModal__img {
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 140px);
+      object-fit: contain;
+      background: #f7f7f7;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .samplesModal__caption {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Mobile modal: stack nav under image */
+    @media (max-width: 720px) {
+      .samplesModal__dialog {
+        grid-template-columns: 1fr;
+      }
+
+      .samplesModal__nav--prev,
+      .samplesModal__nav--next {
+        width: 100%;
+        height: 44px;
+        font-size: 28px;
+      }
+
+      .samplesModal__figure {
+        order: 1;
+      }
+      .samplesModal__nav--prev {
+        order: 2;
+      }
+      .samplesModal__nav--next {
+        order: 3;
+      }
+    }
+
+    /* Force hidden to actually hide (important if you set display on modal) */
+    .presentationSamples [hidden] {
+      display: none !important;
+    }
+  </style>
+</section>

@@ -1,0 +1,388 @@
+---
+/**
+ * PosterSamples (light mode, flex-wrap + modal slideshow)
+ * Usage: <PosterSamples />
+ *
+ * Put poster images in /public/posters/...
+ */
+
+type Sample = {
+  thumbSrc: string
+  fullSrc: string
+  alt: string
+  title?: string
+}
+
+const SECTION_ID = "posters"
+
+const posters: Sample[] = [
+  {
+    thumbSrc: "/posters/thumbs/Poster01.webp",
+    fullSrc: "/posters/full/Poster01.webp",
+    alt: "Poster illustration 01",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster02.webp",
+    fullSrc: "/posters/full/Poster02.webp",
+    alt: "Poster illustration 02",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster03.webp",
+    fullSrc: "/posters/full/Poster03.webp",
+    alt: "Poster illustration 03",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster04.webp",
+    fullSrc: "/posters/full/Poster04.webp",
+    alt: "Poster illustration 04",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster05.webp",
+    fullSrc: "/posters/full/Poster05.webp",
+    alt: "Poster illustration 05",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster06.webp",
+    fullSrc: "/posters/full/Poster06.webp",
+    alt: "Poster illustration 06",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster07.webp",
+    fullSrc: "/posters/full/Poster07.webp",
+    alt: "Poster illustration 07",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster08.webp",
+    fullSrc: "/posters/full/Poster08.webp",
+    alt: "Poster illustration 08",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster09.webp",
+    fullSrc: "/posters/full/Poster09.webp",
+    alt: "Poster illustration 09",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster10.webp",
+    fullSrc: "/posters/full/Poster10.webp",
+    alt: "Poster illustration 10",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster11.webp",
+    fullSrc: "/posters/full/Poster11.webp",
+    alt: "Poster illustration 11",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster12.webp",
+    fullSrc: "/posters/full/Poster12.webp",
+    alt: "Poster illustration 12",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster13.webp",
+    fullSrc: "/posters/full/Poster13.webp",
+    alt: "Poster illustration 13",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster14.webp",
+    fullSrc: "/posters/full/Poster14.webp",
+    alt: "Poster illustration 14",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster15.webp",
+    fullSrc: "/posters/full/Poster15.webp",
+    alt: "Poster illustration 15",
+  },
+  {
+    thumbSrc: "/posters/thumbs/Poster16.webp",
+    fullSrc: "/posters/full/Poster16.webp",
+    alt: "Poster illustration 16",
+  },
+]
+---
+
+<section
+  id={SECTION_ID}
+  class="posterSamples"
+  data-posters
+  aria-labelledby="posters-title"
+>
+  <div class="shell">
+    <header class="posterSamples__header">
+      <p class="posterSamples__eyebrow">Illustration</p>
+      <h2 id="posters-title" class="posterSamples__title">Poster Studies</h2>
+      <p class="posterSamples__intro">
+        Selected personal illustration work. Click to enlarge and browse.
+      </p>
+    </header>
+
+    <div class="posterSamples__grid" aria-label="Poster thumbnails">
+      {
+        posters.map((p, i) => (
+          <button
+            type="button"
+            class="posterSamples__thumbBtn"
+            data-poster-thumb
+            data-index={i}
+            data-thumb={p.thumbSrc}
+            data-full={p.fullSrc}
+            data-alt={p.alt}
+            aria-label={`Open poster ${i + 1}`}
+          >
+            <img
+              class="posterSamples__thumb"
+              src={p.thumbSrc}
+              alt={p.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="posterModal" data-posters-modal hidden aria-hidden="true">
+    <div class="posterModal__backdrop" data-posters-close></div>
+
+    <div
+      class="posterModal__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Poster slideshow"
+    >
+      <button
+        class="posterModal__close"
+        type="button"
+        data-posters-close
+        aria-label="Close">✕</button
+      >
+
+      <button
+        class="posterModal__nav posterModal__nav--prev"
+        type="button"
+        data-posters-prev
+        aria-label="Previous"
+      >
+        ‹
+      </button>
+
+      <figure class="posterModal__figure">
+        <img class="posterModal__img" data-posters-img alt="" />
+        <figcaption class="posterModal__caption" data-posters-caption>
+        </figcaption>
+      </figure>
+
+      <button
+        class="posterModal__nav posterModal__nav--next"
+        type="button"
+        data-posters-next
+        aria-label="Next"
+      >
+        ›
+      </button>
+    </div>
+  </div>
+
+  <script src="/js/poster-samples.js" type="module"></script>
+
+  <style>
+    .posterSamples {
+      --ink: #2a2c27;
+      --accent: #cf729c;
+
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
+      --radius: 14px;
+
+      padding: clamp(28px, 5vw, 56px) 16px;
+      color: var(--text);
+    }
+
+    .posterSamples .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .posterSamples__header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .posterSamples__eyebrow {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .posterSamples__title {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .posterSamples__intro {
+      margin: 12px auto 0;
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* Flex-wrap thumbnail wall */
+    .posterSamples__grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .posterSamples__thumbBtn {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      outline: 1px solid rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+
+      /* Slightly narrower tiles since posters are tall */
+      flex: 0 1 clamp(140px, 16vw, 200px);
+    }
+
+    .posterSamples__thumbBtn:focus-visible {
+      outline: 3px solid rgba(207, 114, 156, 0.45);
+      outline-offset: 2px;
+    }
+
+    .posterSamples__thumb {
+      display: block;
+      width: 100%;
+      aspect-ratio: 2 / 3; /* portrait posters */
+      object-fit: cover;
+      background: #fff;
+      transition: transform 160ms ease;
+    }
+
+    .posterSamples__thumbBtn:hover .posterSamples__thumb {
+      transform: scale(1.02);
+    }
+
+    /* Modal */
+    .posterModal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+    }
+
+    .posterModal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .posterModal__dialog {
+      position: relative;
+      width: min(1100px, calc(100vw - 24px));
+      max-height: calc(100vh - 24px);
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 18px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+      padding: 14px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .posterModal__close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.95);
+      color: #2a2c27;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .posterModal__nav {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.95);
+      cursor: pointer;
+      font-size: 34px;
+      line-height: 1;
+      color: #2a2c27;
+      display: grid;
+      place-items: center;
+      user-select: none;
+    }
+
+    .posterModal__figure {
+      margin: 0;
+      width: 100%;
+      display: grid;
+      gap: 10px;
+    }
+
+    .posterModal__img {
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 140px);
+      object-fit: contain;
+      background: #f7f7f7;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .posterModal__caption {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Mobile modal: stack nav under image */
+    @media (max-width: 720px) {
+      .posterModal__dialog {
+        grid-template-columns: 1fr;
+      }
+
+      .posterModal__nav--prev,
+      .posterModal__nav--next {
+        width: 100%;
+        height: 44px;
+        font-size: 28px;
+      }
+
+      .posterModal__figure {
+        order: 1;
+      }
+      .posterModal__nav--prev {
+        order: 2;
+      }
+      .posterModal__nav--next {
+        order: 3;
+      }
+    }
+
+    .posterSamples [hidden] {
+      display: none !important;
+    }
+  </style>
+</section>

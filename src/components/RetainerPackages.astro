@@ -1,0 +1,289 @@
+---
+/**
+ * RetainerPackages.astro
+ * Presentation Ace – Retainer packages component
+ */
+---
+
+<section class="retainers">
+  <div class="retainers__shell">
+    <header class="retainers__header">
+      <p class="retainers__eyebrow">ONGOING SUPPORT</p>
+      <h2 class="retainers__title">Retainer Packages</h2>
+      <p class="retainers__subtitle">
+        Limited availability · 3‑month minimum commitment · Custom retainers available on request
+      </p>
+    </header>
+
+    <div class="retainers__grid">
+      <!-- Essentials -->
+      <article class="retainer-card">
+        <h3 class="retainer-card__name">Essentials</h3>
+
+        <p class="retainer-card__price">
+          <span class="retainer-card__price-symbol">$</span>
+          <span class="retainer-card__price-amount">2,500</span>
+          <span class="retainer-card__price-period">/mo</span>
+        </p>
+
+        <div class="retainer-card__divider"></div>
+
+        <ul class="retainer-card__list">
+          <li>
+            25 hours / month (approx. 15–25 slides, depending on complexity, with animations)
+          </li>
+          <li><strong>High priority:</strong> 72h turnaround possible for routine updates (&lt;10 slides), when capacity allows</li> 
+          <li>
+            Best for solo leaders with monthly decks
+          </li>
+          <li><strong>No rush fees</strong></li>
+          <li>Flexible usage: Concept, Design, Animation, & Consulting</li>
+        </ul>
+
+        <div class="retainer-card__cta-wrap">
+          <a href="/contact" class="retainer-card__cta">Inquire</a>
+        </div>
+      </article>
+
+      <!-- Partner -->
+      <article class="retainer-card retainer-card--highlight">
+        <h3 class="retainer-card__name">Partner</h3>
+
+        <p class="retainer-card__price">
+          <span class="retainer-card__price-symbol">$</span>
+          <span class="retainer-card__price-amount">4,500</span>
+          <span class="retainer-card__price-period">/mo</span>
+        </p>
+
+        <div class="retainer-card__divider"></div>
+
+        <ul class="retainer-card__list">
+          <li>
+            50 hours / month (approx. 35–45 slides, depending on complexity, with animations)
+          </li>
+          <li><strong>High priority:</strong> 48h turnaround possible for routine updates (&lt;10 slides), when capacity allows</li> 
+          <li>
+            Best for teams or speakers with multiple key presentations each month
+          </li>
+          <li><strong>No rush fees</strong></li>
+          <li>Flexible usage: Concept, Design, Animation, & Consulting</li>
+        </ul>
+
+        <div class="retainer-card__cta-wrap">
+          <a href="/contact" class="retainer-card__cta">Inquire</a>
+        </div>
+      </article>
+
+      <!-- Enterprise -->
+      <article class="retainer-card">
+        <h3 class="retainer-card__name">Enterprise</h3>
+
+        <p class="retainer-card__price">
+          <span class="retainer-card__price-symbol">$</span>
+          <span class="retainer-card__price-amount">8,500</span>
+          <span class="retainer-card__price-period">/mo</span>
+        </p>
+
+        <div class="retainer-card__divider"></div>
+
+        <ul class="retainer-card__list">
+          <li>
+            100 hours / month (approx. 75–85 slides, depending on complexity, with animations)
+          </li>
+          <li>
+            <strong>Top priority:</strong> 24h turnaround possible for routine updates (&lt;10 slides), when capacity allows
+          </li>
+          <li>Acts as an extension of your in‑house team</li>
+          <li><strong>No rush fees</strong></li>
+          <li>Flexible usage: Concept, Design, Animation, & Consulting</li>
+        </ul>
+
+        <div class="retainer-card__cta-wrap">
+          <a href="/contact" class="retainer-card__cta">Inquire</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    /* reuse these if you already set them globally */
+    --bg: #101318;
+    --bg-card: #15191f;
+    --bg-card-alt: #181d24;
+    --border-soft: #262b35;
+    --accent: #cf729c;
+    --accent-soft: #f8c3df;
+    --text: #f7f7f7;
+    --muted: #b0b3c0;
+    --radius-lg: 18px;
+    --radius-pill: 999px;
+    --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.75);
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .retainers {
+    padding: 40px 0 52px;
+    background: radial-gradient(circle at top, #252a35 0, #05060a 55%);
+    color: var(--text);
+    font-family: var(--font-sans);
+  }
+
+  .retainers__shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .retainers__header {
+    margin-bottom: 24px;
+  }
+
+  .retainers__eyebrow {
+    margin: 0 0 4px;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+  }
+
+  .retainers__title {
+    margin: 0 0 6px;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .retainers__subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .retainers__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  .retainer-card {
+    background: radial-gradient(circle at top left, #202633 0, #12151c 55%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-soft);
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .retainer-card--highlight {
+    border-color: rgba(207, 114, 156, 0.8);
+  }
+
+  .retainer-card__name {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .retainer-card__price {
+    margin: 0 0 10px;
+    font-weight: 700;
+    color: var(--accent-soft);
+    /* display: none; */
+  }
+
+  .retainer-card__price-symbol {
+    font-size: 1.1rem;
+    vertical-align: top;
+  }
+
+  .retainer-card__price-amount {
+    font-size: 1.7rem;
+    margin: 0 2px;
+  }
+
+  .retainer-card__price-period {
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  .retainer-card__divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    margin: 8px 0 12px;
+  }
+
+  .retainer-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .retainer-card__list li {
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 6px;
+  }
+
+  .retainer-card__list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+
+  .retainer-card__cta-wrap {
+    text-align: left;
+  }
+
+  .retainer-card__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 18px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    color: #120b11;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.12s ease, transform 0.12s ease,
+      box-shadow 0.12s ease;
+  }
+
+  .retainer-card__cta:hover {
+    background: #d57aa6;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+  }
+
+  @media (max-width: 960px) {
+    .retainers__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .retainer-card {
+      max-width: 420px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .retainers__shell {
+      padding: 0 16px;
+    }
+
+    .retainers__title {
+      font-size: 1.5rem;
+    }
+  }
+</style>

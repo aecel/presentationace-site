@@ -1,0 +1,86 @@
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p class="site-footer__brand">
+      © {new Date().getFullYear()} Presentation Ace.
+    </p>
+
+    <p class="site-footer__meta">
+      Executive presentation design · PowerPoint · Retainer support ·
+      Confidential by default
+    </p>
+
+    <nav class="site-footer__links" aria-label="Footer links">
+      <a href="mailto:ace@presentationace.com">ace@presentationace.com</a>
+      <span class="dot">·</span>
+      <a href="/contact">Contact</a>
+      <span class="dot">·</span>
+      <!-- <a href="/pricing">Pricing</a>
+      <span class="dot">·</span> -->
+      <a
+        href="https://calendly.com/presentationace"
+        target="_blank"
+        rel="noreferrer">Schedule</a
+      >
+      <!-- <span class="dot">·</span>
+      <a href="/terms">Terms</a> -->
+
+      <span class="dot">·</span>
+      <a
+        href="https://portal.presentationace.com"
+        target="_blank"
+        rel="noreferrer">Client Portal</a
+      >
+      <span class="dot">·</span>
+      <a href="/terms">Terms</a>
+
+      <span class="dot">·</span>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 12px 0 16px;
+    background: rgba(5, 6, 10, 0.92);
+    flex-shrink: 0;
+  }
+
+  .site-footer__inner {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .site-footer__brand {
+    margin: 0 0 4px;
+  }
+
+  .site-footer__meta {
+    margin: 0;
+  }
+
+  .site-footer__links {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+  }
+
+  .site-footer__links a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .site-footer__links a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .dot {
+    color: rgba(255, 255, 255, 0.2);
+  }
+</style>

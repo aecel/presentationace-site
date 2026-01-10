@@ -1,0 +1,158 @@
+---
+import "../styles/portfolio.css"
+
+type PortfolioItem = {
+  title: string
+  description: string
+  tags: string[]
+  // Use either image or video (or both)
+  image?: { src: string; alt: string }
+  video?: { webm: string; mp4?: string; poster?: string }
+  // Optional: link to a case study page or external URL
+  href?: string
+}
+
+const SECTION_ID = "portfolio"
+
+const EYEBROW = "Portfolio"
+const TITLE = "Selected work"
+const INTRO =
+  "A few examples of the types of decks I design and the outcomes they support. More case studies coming soon."
+
+const items: PortfolioItem[] = [
+  {
+    title: "Executive update deck refresh",
+    description:
+      "Cleaned up hierarchy, rebuilt key slides into a consistent system, and added subtle motion for emphasis.",
+    tags: ["Executive", "Reporting", "Design system", "Animation"],
+    image: {
+      src: "/portfolio/executive-update.jpg",
+      alt: "Executive update slide design preview",
+    },
+    // href: "/work/executive-update" // optional
+  },
+  {
+    title: "Investor narrative + pitch polish",
+    description:
+      "Restructured flow, tightened visuals, and refined story beats for clarity and confidence in the room.",
+    tags: ["Investor", "Story", "Pitch", "Charts"],
+    image: {
+      src: "/portfolio/investor-pitch.jpg",
+      alt: "Investor pitch slide preview",
+    },
+  },
+  {
+    title: "Product roadmap deck",
+    description:
+      "Built a roadmap layout library and modular slides to make monthly updates fast and consistent.",
+    tags: ["Product", "Roadmap", "Templates", "Team"],
+    image: {
+      src: "/portfolio/roadmap.jpg",
+      alt: "Product roadmap slide preview",
+    },
+  },
+  // Example item with video preview instead of image:
+  // {
+  //   title: "Animated feature walkthrough",
+  //   description: "Short looping motion to guide attention and reveal steps without feeling flashy.",
+  //   tags: ["Animation", "Product", "Explainer"],
+  //   video: {
+  //     webm: "/portfolio/feature-walkthrough.webm",
+  //     mp4: "/portfolio/feature-walkthrough.mp4",
+  //     poster: "/portfolio/feature-walkthrough-poster.jpg",
+  //   },
+  // },
+]
+
+const CTA_HREF = "/contact"
+---
+
+<section id={SECTION_ID} class="portfolio" aria-labelledby="portfolio-title">
+  <div class="shell">
+    <header class="portfolio__header">
+      <p class="portfolio__eyebrow">{EYEBROW}</p>
+      <h2 id="portfolio-title" class="portfolio__title">{TITLE}</h2>
+      <p class="portfolio__intro">{INTRO}</p>
+    </header>
+
+    <div class="portfolio__grid">
+      {
+        items.map((item) => (
+          <article class="portfolio-card" aria-label={item.title}>
+            <div class="portfolio-card__media">
+              {item.video ? (
+                <video
+                  class="portfolio-card__video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  poster={item.video.poster}
+                >
+                  <source src={item.video.webm} type="video/webm" />
+                  {item.video.mp4 && (
+                    <source src={item.video.mp4} type="video/mp4" />
+                  )}
+                </video>
+              ) : item.image ? (
+                <img
+                  class="portfolio-card__image"
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div class="portfolio-card__placeholder" aria-hidden="true">
+                  Preview coming soon
+                </div>
+              )}
+            </div>
+
+            <div class="portfolio-card__body">
+              <h3 class="portfolio-card__title">{item.title}</h3>
+              <p class="portfolio-card__desc">{item.description}</p>
+
+              <ul class="portfolio-card__tags" aria-label="Tags">
+                {item.tags.map((t) => (
+                  <li class="portfolio-card__tag">{t}</li>
+                ))}
+              </ul>
+
+              <div class="portfolio-card__actions">
+                {item.href ? (
+                  <a class="btn btn--secondary" href={item.href}>
+                    View details
+                  </a>
+                ) : (
+                  <span class="btn btn--ghost" aria-hidden="true">
+                    Case study soon
+                  </span>
+                )}
+
+                <a class="btn btn--primary" href={CTA_HREF}>
+                  Inquire
+                </a>
+              </div>
+
+              <p class="portfolio-card__note">
+                <strong>Note:</strong> Client details and metrics are anonymized
+                unless approved.
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="portfolio__footer">
+      <p class="portfolio__footerText">
+        Want examples closer to your use case (investor, product, sales, exec
+        reporting)? Tell me what you’re working on and I’ll share the most
+        relevant samples.
+      </p>
+      <a class="btn btn--primary btn--footer" href={CTA_HREF}> Contact </a>
+    </div>
+  </div>
+</section>

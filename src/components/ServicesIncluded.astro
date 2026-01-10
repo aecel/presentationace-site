@@ -1,0 +1,94 @@
+---
+import "../styles/included_dark.css"
+
+const SECTION_ID = "included"
+
+const EYEBROW = "Included"
+const TITLE = "Every engagement includes"
+const INTRO = "No surprises. These are standard in every project and retainer."
+
+const items: { title: string; description: string }[] = [
+  {
+    title: "Confidentiality by default (NDA-friendly)",
+    description:
+      "I treat all decks, metrics, and drafts as confidential and can sign an NDA if required.",
+  },
+  {
+    title: "Relationship-driven collaboration",
+    description:
+      "Clear communication, low-friction process, and I learn your preferences over time so each month gets smoother. I’m adaptable to new tools and workflows and I’m committed to continuously improving my craft.",
+  },
+  {
+    title: "Feedback-friendly, zero ego",
+    description:
+      "I’m flexible with your direction and I welcome input without judgment. You’ll get a calm, receptive partner who listens, iterates quickly, and stays focused on what will make the deck stronger.",
+  },
+  {
+    title: "Executive-ready design quality",
+    description:
+      "Clear hierarchy, disciplined layout, consistent spacing, and a polished visual system that reads well in decision rooms.",
+  },
+  //   {
+  //     title: "High-quality assets",
+  //     description:
+  //       "Clean icons and imagery that match your brand and improve clarity (no low-res screenshots or random clip art).",
+  //   },
+  {
+    title: "Fully editable assets (vector-first)",
+    description:
+      "Icons are provided in SVG/vector format so colors can be adjusted to match your brand. When I use flat illustrations, they’re built as editable vectors whenever possible, so you can update colors, shapes, and labels later without rebuilding the slide.",
+  },
+  {
+    title: "Purposeful animation",
+    description:
+      "Motion used to guide attention and pacing. I include subtle animation by default because it brings energy and polish, but if you’d rather have zero animation, just let me know.",
+  },
+
+  //   {
+  //     title: "Hand-crafted slides (no templates dumped on you)",
+  //     description:
+  //       "I build slides intentionally for your content and audience. No generic layouts or “one-size-fits-all” formatting.",
+  //   },
+    {
+      title: "Version control + clean file delivery",
+      description:
+        "Organized files, sensible naming, and edits that keep decks maintainable for future updates.",
+    },
+  //   {
+  //     title: "Fast communication and clear next steps",
+  //     description:
+  //       "You’ll get confirmation of what I’m working on, what I need from you, and when to expect the next delivery.",
+  //   },
+  {
+    title: "On-brand consistency",
+    description:
+      "Fonts, colors, spacing, and components stay consistent across the deck.",
+  },
+]
+
+const FOOTNOTE =
+  "If you have accessibility requirements (contrast, font sizing) or brand rules, I’ll build within those constraints."
+---
+
+<section id={SECTION_ID} class="included" aria-labelledby="included-title">
+  <div class="shell">
+    <header class="included__header">
+      <!-- <p class="included__eyebrow">{EYEBROW}</p> -->
+      <h2 id="included-title" class="included__title">{TITLE}</h2>
+      <p class="included__intro">{INTRO}</p>
+    </header>
+
+    <div class="included__card" role="list" aria-label="Included items">
+      {
+        items.map((item) => (
+          <div class="included__item" role="listitem">
+            <h3 class="included__itemTitle">{item.title}</h3>
+            <p class="included__itemDesc">{item.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    {FOOTNOTE && <p class="included__footnote">{FOOTNOTE}</p>}
+  </div>
+</section>

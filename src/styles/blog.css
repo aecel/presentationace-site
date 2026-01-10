@@ -1,0 +1,131 @@
+.blog {
+  --ink: #2a2c27;
+  --accent: #cf729c;
+  --accent-ink: #ffffff;
+
+  --bg: #ffffff;
+  --text: #2b2b2b;
+  --muted: #6e6e6e;
+
+  --card: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --radius: 16px;
+
+  padding: clamp(32px, 5vw, 64px) 16px;
+  
+  color: var(--text);
+}
+
+.blog .shell {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.blog__header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.blog__eyebrow {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.blog__title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.blog__intro {
+  margin: 12px auto 0;
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* Grid (one card, but keeps it consistent with your other sections) */
+.blog__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  justify-items: center;
+}
+
+/* Card */
+.blog-card {
+  width: 100%;
+  max-width: 760px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 24px 20px;
+  position: relative;
+}
+
+.blog-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-weight: 800;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  margin: 0 auto 14px;
+}
+
+.blog-card__title {
+  margin: 0;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.blog-card__text {
+  margin: 12px auto 0;
+  max-width: 62ch;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.blog-card__divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 18px 0;
+}
+
+.blog-card__footer {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.blog-card__link {
+  color: var(--accent);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.blog-card__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .blog-card {
+    padding: 20px 18px 16px;
+  }
+}

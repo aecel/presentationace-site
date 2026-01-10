@@ -1,0 +1,61 @@
+---
+type ImageRef = {
+  src: string // from /public, e.g. "/services/full-before.jpg"
+  alt: string
+}
+
+export type Props = {
+  title: string
+  description: string
+  before: ImageRef
+  after: ImageRef
+  needs: string[]
+  note?: string // optional small footnote
+}
+
+const { title, description, before, after, needs, note } = Astro.props
+---
+
+<article class="serviceCard" aria-label={title}>
+  <header class="serviceCard__header">
+    <h3 class="serviceCard__title">{title}</h3>
+    <p class="serviceCard__desc">{description}</p>
+  </header>
+
+  <div class="serviceCard__media" aria-label={`${title}: before and after`}>
+    <figure class="serviceCard__shot">
+      <img
+        class="serviceCard__img"
+        src={before.src}
+        alt={before.alt}
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="serviceCard__cap">Before</figcaption>
+    </figure>
+
+    <div class="serviceCard__arrow" aria-hidden="true">
+      <span class="serviceCard__arrowIcon">→</span>
+    </div>
+
+    <figure class="serviceCard__shot">
+      <img
+        class="serviceCard__img"
+        src={after.src}
+        alt={after.alt}
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="serviceCard__cap">After</figcaption>
+    </figure>
+  </div>
+
+  <div class="serviceCard__body">
+    <h4 class="serviceCard__needTitle">What I need from you</h4>
+    <ul class="serviceCard__list">
+      {needs.map((n) => <li>{n}</li>)}
+    </ul>
+
+    {note && <p class="serviceCard__note">{note}</p>}
+  </div>
+</article>

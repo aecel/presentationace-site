@@ -1,0 +1,147 @@
+---
+export type Props = {
+  title: string
+  text?: string
+  primaryLabel: string
+  primaryHref: string
+  secondaryLabel?: string
+  secondaryHref?: string
+  theme?: "light" | "dark"
+}
+
+const {
+  title,
+  text,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  theme = "light",
+} = Astro.props
+---
+
+<section
+  class:list={[
+    "ctaSection",
+    theme === "dark" ? "ctaSection--dark" : "ctaSection--light",
+  ]}
+  aria-label="Call to action"
+>
+  <div class="shell">
+    <div class="ctaCard">
+      <h2 class="ctaCard__title">{title}</h2>
+      {text && <p class="ctaCard__text">{text}</p>}
+
+      <div class="ctaCard__buttons">
+        <a class="btn" href={primaryHref}>{primaryLabel}</a>
+
+        {
+          secondaryLabel && secondaryHref && (
+            <a class="btn btn--secondary" href={secondaryHref}>
+              {secondaryLabel}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .ctaSection {
+      --accent: #cf729c;
+
+      --ink: #2a2c27;
+      --text: #2b2b2b;
+      --muted: #6e6e6e;
+
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+
+      padding: clamp(18px, 4vw, 28px) 16px;
+      color: var(--text);
+    }
+
+    .ctaSection--light {
+      background: unset;
+    }
+
+    .ctaSection--dark {
+      background: #0f1216;
+
+      --ink: #f2f4f8;
+      --text: #e8eaf0;
+      --muted: #a8afbd;
+
+      --card: rgba(21, 26, 32, 0.92);
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .ctaSection .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .ctaCard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      text-align: center;
+    }
+
+    .ctaCard__title {
+      margin: 0;
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1.2rem;
+    }
+
+    .ctaCard__text {
+      margin: 10px auto 0;
+      max-width: 900px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .ctaCard__buttons {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .btn:hover {
+      filter: brightness(0.98);
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid rgba(207, 114, 156, 0.65);
+    }
+
+    .btn--secondary:hover {
+      border-color: rgba(207, 114, 156, 0.95);
+      filter: none;
+    }
+  </style>
+</section>

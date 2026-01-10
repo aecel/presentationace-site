@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import EngagementOptions from "../components/EngagementOptions.astro"
+import RetainerPackages from "../components/RetainerPackages.astro"
+import ServicesSection from "../components/ServicesSection.astro"
+import ServicesTabs from "../components/ServicesTabs.astro"
+import ServicesIncluded from "../components/ServicesIncluded.astro"
+import RetainerProcessSection from "../components/RetainerProcessSection.astro"
+import ContactSection from "../components/ContactSection.astro"
+import "../styles/contact_dark.css"
+import UseCasesMarquee from "../components/UseCasesMarquee.astro"
+import RetainerWhySection from "../components/RetainerWhySection.astro"
+import ContactFormSection from "../components/ContactFormSection.astro"
+---
+
+<BaseLayout
+  title="Services & Retainers | Presentation Ace"
+  description="Executive presentation design services and ongoing retainer support for founders, VPs, and senior leaders."
+>
+  <ServicesTabs />
+  <UseCasesMarquee />
+
+  <ServicesIncluded />
+
+  <EngagementOptions />
+  <RetainerProcessSection />
+  <RetainerWhySection />
+  <ContactFormSection />
+</BaseLayout>
