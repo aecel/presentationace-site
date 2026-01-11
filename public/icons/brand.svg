@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 716">
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path d="m458.33,91.06c72.5.4,111.76,3.62,137.38,29.23,29.29,29.29,29.29,76.43,29.29,170.71v200c0,94.28,0,141.42-29.29,170.71s-76.43,29.29-170.71,29.29h-200c-94.28,0-141.42,0-170.71-29.29-29.29-29.29-29.29-76.43-29.29-170.71v-200c0-94.28,0-141.42,29.29-170.71,25.61-25.61,64.88-28.83,137.38-29.23" style="fill: none; isolation: isolate; stroke: #cf729c; stroke-miterlimit: 133.33; stroke-width: 50px;"/>
+    <path d="m225.38,404.55l57.14,53.33,142.86-133.33" style="fill: none; stroke: #fff; stroke-linecap: round; stroke-miterlimit: 133.33; stroke-width: 50px;"/>
+    <path d="m242,25h167c27.61,0,50,22.39,50,50v33c0,27.61-22.39,50-50,50h-167c-27.61,0-50-22.39-50-50v-33c0-27.61,22.39-50,50-50Z" style="fill: none; stroke: #fff; stroke-linecap: round; stroke-miterlimit: 133.33; stroke-width: 50px;"/>
+  </g>
+</svg>

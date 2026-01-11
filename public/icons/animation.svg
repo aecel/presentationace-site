@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 716.67 716.67">
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <path d="m358.33,691.67c-184.09,0-333.33-149.24-333.33-333.33S190.9,25,375,25" style="fill: none; isolation: isolate; stroke: #cf729c; stroke-dasharray: 0 0 133.33 100; stroke-linecap: round; stroke-miterlimit: 133.33; stroke-width: 50px;"/>
+      <path d="m358.33,691.67c184.09,0,333.33-149.24,333.33-333.33S542.43,25,358.33,25" style="fill: none; stroke: #fff; stroke-linecap: round; stroke-miterlimit: 133.33; stroke-width: 50px;"/>
+      <path d="m472.33,323.03c26.06,15.39,26.06,55.21,0,70.6l-157.34,92.89c-25.33,14.95-56.45-4.51-56.45-35.3v-185.79c0-30.79,31.12-50.25,56.45-35.3l157.34,92.89Z" style="fill: none; stroke: #fff; stroke-linecap: round; stroke-miterlimit: 133.33; stroke-width: 50px;"/>
+    </g>
+  </g>
+</svg>
