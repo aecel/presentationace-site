@@ -68,7 +68,7 @@ const project: PricingCard = {
     "Best for: First-time clients or occasional presentation design needs.",
     "Send your project files and details to start. All files are treated as confidential.",
     "Expect a reply in 1–2 business days.",
-    "If you upgrade to a retainer within 30 days of a project, I’ll credit 50% of the cost (up to $1000) to your first month. (One time use)",
+    "If you upgrade to a retainer within 30 days of a project, I’ll credit part of the cost to your first month. (One time use)",
     "Retainer overages are billed at this rate.",
   ],
   ctaLabel: "Inquire",
@@ -342,6 +342,9 @@ const partner: PricingCard = {
     font-weight: 700;
     color: var(--accent);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+    top: 10px;
+    font-size: large;
   }
 
   .card__badge--neutral {
@@ -352,7 +355,8 @@ const partner: PricingCard = {
     text-align: center;
     margin-top: 6px;
     margin-bottom: 12px;
-    line-height: 1.05;
+    line-height: 1.05;    
+    display: none;
   }
 
   .card__amount {
