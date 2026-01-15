@@ -149,7 +149,7 @@ const partner: PricingCard = {
           }
 
           <div class="card__price">
-            <span class="card__amount">{project.price}</span>
+            <span class="card__amount">{project.eyebrow}</span>
             <span class="card__unit">{project.unit}</span>
           </div>
 
@@ -179,7 +179,7 @@ const partner: PricingCard = {
           }
 
           <div class="card__price">
-            <span class="card__amount">{essentials.price}</span>
+            <span class="card__amount">{essentials.eyebrow}</span>
             <span class="card__unit">{essentials.unit}</span>
           </div>
 
@@ -198,7 +198,7 @@ const partner: PricingCard = {
           {partner.eyebrow && <div class="card__badge">{partner.eyebrow}</div>}
 
           <div class="card__price">
-            <span class="card__amount">{partner.price}</span>
+            <span class="card__amount">{partner.eyebrow}</span>
             <span class="card__unit">{partner.unit}</span>
           </div>
 
@@ -345,8 +345,9 @@ const partner: PricingCard = {
     color: var(--accent);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 
-    top: 10px;
-    font-size: large;
+    /* top: 10px;
+    font-size: large; */
+    display: none;
   }
 
   .card__badge--neutral {
@@ -358,13 +359,15 @@ const partner: PricingCard = {
     margin-top: 6px;
     margin-bottom: 12px;
     line-height: 1.05;
-    display: none;
+    /* display: none; */
   }
 
   .card__amount {
     font-size: clamp(2.3rem, 3vw, 3rem);
     font-weight: 800;
     color: var(--accent);
+
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
   }
 
   .card__unit {
@@ -372,6 +375,8 @@ const partner: PricingCard = {
     font-weight: 700;
     color: var(--accent);
     margin-left: 6px;
+
+    display: none;
   }
 
   .card__rule {
