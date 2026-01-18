@@ -11,6 +11,7 @@ const USES_WISTIA = true
 const USES_GRAVATAR = false
 const USES_BASIN = true
 const USES_KITCHEN_PORTAL = true
+const USES_CLOUDFLARE_ANALYTICS = true
 ---
 
 <BaseLayout
@@ -83,6 +84,15 @@ const USES_KITCHEN_PORTAL = true
             )
           }
           {
+            USES_BASIN && (
+              <li>
+                <strong>Basin</strong>: used to receive certain form
+                submissions. Form content is transmitted to Basin so it can be
+                delivered to me.
+              </li>
+            )
+          }
+          {
             USES_CALENDLY && (
               <li>
                 <strong>Calendly</strong>: used for scheduling calls. Scheduling
@@ -106,15 +116,6 @@ const USES_KITCHEN_PORTAL = true
               </li>
             )
           }
-          {
-            USES_BASIN && (
-              <li>
-                <strong>Basin</strong>: used to receive certain form
-                submissions. Form content is transmitted to Basin so it can be
-                delivered to me.
-              </li>
-            )
-          }
 
           {
             USES_KITCHEN_PORTAL && (
@@ -124,6 +125,16 @@ const USES_KITCHEN_PORTAL = true
                 third-party service (Kitchen.co). Information submitted through
                 the portal (requests, files, and notes) may be processed and
                 stored by the portal provider to provide the service.
+              </li>
+            )
+          }
+          {
+            USES_CLOUDFLARE_ANALYTICS && (
+              <li>
+                <strong>Cloudflare Web Analytics</strong>: used to understand
+                general site traffic and performance (for example, page views,
+                referrers, and load performance). Cloudflare may process limited
+                technical data to provide these analytics.
               </li>
             )
           }
