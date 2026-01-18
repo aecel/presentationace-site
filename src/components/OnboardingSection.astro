@@ -65,15 +65,15 @@ const feedbackTips = [
 ]
 
 const goodToKnow = [
-  `Rate: ${HOURLY_RATE} (time tracked).`,
+  `Project basis rate: ${HOURLY_RATE} (time tracked).`,
   "Essentials Retainer (25h): $2500/mo, Partner Retainer (50h): $4500/mo.",
   "Projects start with a 5-hour prepaid block. After that, I invoice on approval.",
-  `Typical turnaround: ${TYPICAL_TURNAROUND}.`,
-  `Rush: requests needed in under ~3 business days, on weekends, or outside regular hours may be billed at ${RUSH_PREMIUM}. I will confirm before starting.`,
+  `Typical turnaround is ${TYPICAL_TURNAROUND}.`,
+  `Rush requests needed in under ~3 business days, on weekends, or outside regular hours may be billed at ${RUSH_PREMIUM}. I will confirm before starting.`,
   "Confidentiality is standard. NDA-friendly if needed.",
   "Purposeful animation included by default. Animation-heavy builds or technical interactivity can be scoped if needed.",
   "PowerPoint is the primary workflow, but I can adapt to Google Slides, Keynote, SharePoint, or your team’s tools.",
-  "Company card is welcome (if your payment flow supports it).",
+  "Company card is welcome. Debit/credit card payments processed through PayPal (link: https://paypal.me/aecel). Bank transfer payments processed through Wise (preferred) (link: https://wise.com/pay/me/aecela).",
   FAST_TURNAROUND_NOTE,
 ]
 
@@ -343,7 +343,7 @@ const CTA_SECONDARY_HREF = "/pricing"
     }
 
     .list li::before {
-      content: "✓";
+      content: "•";
       position: absolute;
       left: 0;
       top: 0.22em;
