@@ -7,6 +7,57 @@ const {
   title = "Presentation Ace | Executive Presentation Designer",
   description = "Executive PowerPoint presentation design for founders, VPs, and senior leaders.",
 } = Astro.props
+
+const SITE_URL = "https://presentationace.com"
+const BRAND = "Presentation Ace"
+const EMAIL = "ace@presentationace.com"
+
+// Update these paths if yours differ
+const LOGO_URL = `${SITE_URL}/logo-presentation-ace.svg`
+const AVATAR_URL = `${SITE_URL}/logo-presentation-ace-A.svg` // or your gravatar/local avatar
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: BRAND,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: LOGO_URL,
+      },
+      email: EMAIL,
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          email: EMAIL,
+          availableLanguage: ["en"],
+        },
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: "Ace Acuña",
+      url: SITE_URL,
+      image: AVATAR_URL,
+      email: EMAIL,
+      jobTitle: "Executive presentation designer",
+      worksFor: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      // Optional but helpful: label the site itself
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: BRAND,
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+  ],
+}
 ---
 
 <html lang="en">
@@ -17,6 +68,7 @@ const {
     <meta name="description" content={description} />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="canonical" href="https://presentationace.com/" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     <title>
       {title}
     </title>
