@@ -18,7 +18,7 @@ const TITLE = "Leave feedback (or a testimonial)"
 const INTRO =
   "If we’ve worked together or if you have suggestions, I’d genuinely love to hear it. This helps me improve and helps future clients trust the process."
 
-const THANK_YOU_NOTE = "Thank you. If you’d like a reply, include your email."
+const THANK_YOU_NOTE = "Thank you. I will confirm through email if I plan to feature your testimonial on my website."
 ---
 
 <section id={SECTION_ID} class="feedback" aria-labelledby="feedback-title">
@@ -39,7 +39,7 @@ const THANK_YOU_NOTE = "Thank you. If you’d like a reply, include your email."
         autocomplete="off"
       />
 
-      <div class="feedbackRow">
+      <!-- <div class="feedbackRow">
         <label class="feedbackLabel">Rating</label>
 
         <fieldset class="stars" aria-label="Star rating">
@@ -69,7 +69,7 @@ const THANK_YOU_NOTE = "Thank you. If you’d like a reply, include your email."
 
           <input type="hidden" name="page" value={Astro.url.pathname} />
         </fieldset>
-      </div>
+      </div> -->
 
       <div class="feedbackRow">
         <label class="feedbackLabel" for="message">Your feedback</label>
