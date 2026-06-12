@@ -6,5 +6,10 @@ import sitemap from "@astrojs/sitemap"
 export default defineConfig({
   site: "https://presentationace.com", // your custom domain (future canonical URL)
   base: "/", // because the custom domain will point to the root of the project
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // exclude any URL that contains "/onboarding"
+      filter: (page) => !page.includes("/onboarding"),
+    }),
+  ],
 })

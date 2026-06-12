@@ -12,7 +12,7 @@ const HOURLY_RATE = "$110/hr"
 const RUSH_PREMIUM = "+50%"
 const TYPICAL_TURNAROUND = "1–2 weeks (capacity-dependent)"
 const FAST_TURNAROUND_NOTE =
-  "Faster turnaround available for retainer clients, depending on queue and scope."
+  "Retainer clients have priority, no rush fees, client portal access, and faster turnaround available depending on queue and scope."
 
 const EYEBROW = "Onboarding"
 const TITLE = "Start here"
@@ -65,16 +65,16 @@ const feedbackTips = [
 ]
 
 const goodToKnow = [
-  `Project basis rate: ${HOURLY_RATE} (time tracked in 15 minute increments).`,
-  "Essentials Retainer (25h): $2500/mo, Partner Retainer (50h): $4500/mo. See packages for more info.",
+  `Project basis rate: ${HOURLY_RATE} (time tracked in 15 minute increments). (For clients pre-2026, as a thank you, we keep our usual rate for requests started before Q2 2026 and you have client portal access forever)`,
+  "Essentials Retainer (25hr): $2500/mo ($100/hr), Partner Retainer (50hr): $4500/mo ($90/hr). Custom retainers available. See packages for more info.",
   "Projects start with a 5-hour prepaid block. After that, I invoice on approval.",
   `Typical turnaround is ${TYPICAL_TURNAROUND}.`,
+  FAST_TURNAROUND_NOTE,
   `Rush requests needed in under ~3 business days, on weekends, or outside regular hours may be billed at ${RUSH_PREMIUM}. I will confirm before starting.`,
   "Confidentiality is standard. NDA-friendly if needed.",
-  "Purposeful animation included by default. Animation-heavy builds or technical interactivity can be scoped if needed.",
+  "Purposeful animation included by default.",
   "PowerPoint is the primary workflow, but I can adapt to Google Slides, Keynote, SharePoint, or your team’s tools.",
   "Company card is welcome. Debit/credit card payments processed through PayPal (link: https://paypal.me/aecel). Bank transfer payments processed through Wise (preferred) (link: https://wise.com/pay/me/aecela).",
-  FAST_TURNAROUND_NOTE,
 ]
 
 const aftercare = [
@@ -90,6 +90,39 @@ const CTA_PRIMARY_LABEL = "Contact"
 const CTA_PRIMARY_HREF = "/contact"
 const CTA_SECONDARY_LABEL = "View packages"
 const CTA_SECONDARY_HREF = "/pricing"
+
+// const myLinks = [
+//   {
+//     type: "link",
+//     label: "Email: ace@presentationace.com",
+//     href: "mailto:ace@presentationace.com",
+//   },
+//   {
+//     type: "link",
+//     label: "My website: presentationace.com",
+//     href: "https://presentationace.com",
+//   },
+//   {
+//     type: "link",
+//     label: "Portfolio",
+//     href: "https://presentationace.com/portfolio",
+//   },
+//   { type: "link", label: "About", href: "https://presentationace.com/about" },
+//   {
+//     type: "link",
+//     label: "Schedule a meeting",
+//     href: "https://calendly.com/presentationace",
+//   },
+// ]
+
+const clientPortalThings = [
+  "File management (upload/download)",
+  "Comment/annotate on files",
+  "Approve files",
+  "Invite other people",
+  "etc",
+  "Please note that the preview is missing some elements and doesn't match what you see in PowerPoint, so the file needs to be downloaded first, and then opened.",
+]
 ---
 
 <section
@@ -103,6 +136,61 @@ const CTA_SECONDARY_HREF = "/pricing"
       <h2 id="onboarding-title" class="onboarding__title">{TITLE}</h2>
       <p class="onboarding__intro">{INTRO}</p>
     </header>
+
+    <section class="panel" aria-label="Links">
+      <h3 class="panel__title">Links</h3>
+      <ul class="list">
+        <!-- {
+          myLinks.map((item) => (
+            <li>
+              {item.type === "link" ? (
+                <a href={item.href}>{item.label}</a>
+              ) : (
+                item.label
+              )}
+            </li>
+          ))
+        } -->
+        <li>
+          Email: <a href="mailto:ace@presentationace.com" target="_blank"
+            >ace@presentationace.com</a
+          >
+        </li>
+        <li>
+          My website: <a href="https://presentationace.com" target="_blank"
+            >presentationace.com</a
+          >
+        </li>
+        <li>
+          <a href="https://presentationace.com/portfolio" target="_blank"
+            >Portfolio</a
+          > || <a href="https://presentationace.com/about" target="_blank"
+            >About</a
+          > || <a href="https://presentationace.com/contact" target="_blank"
+            >Feedback Form and Contact</a
+          >
+        </li>
+        <li>
+          <a href="https://calendly.com/presentationace" target="_blank"
+            >Schedule a meeting or check availability</a
+          >
+        </li>
+        <li>
+          <a href="https://portal.presentationace.com/" target="_blank"
+            >Client Portal</a
+          > (central hub for requests, assets, and files)
+        </li>
+      </ul>
+      <!-- <details class="details">
+        <summary class="details__summary">Billing timing</summary>
+        <div class="details__body">
+          Invoices are sent after approval of delivered work. If a project
+          pauses, I may invoice for completed work to date so billing stays
+          clean and predictable. If the project resumes later, the remaining
+          scope is invoiced after final approval.
+        </div>
+      </details> -->
+    </section>
 
     <div class="onboarding__grid">
       <section class="card" aria-label="How we work together">
@@ -187,6 +275,17 @@ const CTA_SECONDARY_HREF = "/pricing"
         </div>
       </details>
     </section>
+    <section
+      class="panel"
+      aria-label="What you can do in the client portal if you have access"
+    >
+      <h3 class="panel__title">
+        What you can do in the client portal if you have access
+      </h3>
+      <ul class="list">
+        {clientPortalThings.map((x) => <li>{x}</li>)}
+      </ul>
+    </section>
 
     <section class="panel" aria-label="Aftercare and support">
       <h3 class="panel__title">Aftercare</h3>
@@ -210,6 +309,9 @@ const CTA_SECONDARY_HREF = "/pricing"
   </div>
 
   <style>
+    a {
+      color: #cf729c;
+    }
     .onboarding {
       --accent: #cf729c;
 
