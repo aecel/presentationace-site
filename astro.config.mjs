@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config"
 import sitemap from "@astrojs/sitemap"
 // https://astro.build/config
 
-const SECRET_PATHS = ["/welcome", "/start"]
+const SECRET_PATHS = ["/welcome", "/start", "/onboarding"]
 
 export default defineConfig({
   site: "https://presentationace.com", 
